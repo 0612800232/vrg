@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://192.168.1.37:8090/ -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spark Jobserver UI</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/index.css" rel="stylesheet">
+
+<script src="/resources/script/jquery.min.js"></script>
+<script src="/resources/script/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="page-header">
+		<h1>spark job 管理</h1>
+	</div>
+	<ul class="nav nav-tabs nav-justified" id="navTabs">
+		<li class=""><a href="/spark_job/jobs" >所有的可运行任务</a></li>
+		<li class=""><a href="/spark_job/running_jobs">运行中的任务</a></li>
+		<li class="active"><a href="/spark_job/finish_jobs">运行完成的任务</a></li>
+		<li class=""><a href="/spark_job/time_jobs" >所有的定时任务</a></li>
+		<li class=""><a href="/spark_job/hdfs_jars">hdfs jar 管理</a></li>
+		<li class=""><a href="/spark_job/system_config">系统相关管理</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="spark_class">
+			<div class="panel panel-info">
+
+
+
+				<div class="panel-heading">完成的spark job</div>
+				<div class="panel-body">
+					<table class="table table-striped" id="runningJobsTable">
+						<thead>
+							<tr>
+								<th>job ID</th>
+								<th>类名</th>
+								<th>driver</th>
+								<th>master</th>
+								<th>spark任务类别</th>
+								<th>运行status</th>
+								<th>运行结果</th>
+								<th>开始时间</th>
+								<th>结束时间</th>
+								<th>停止</th>
+							</tr>
+						</thead>
+						<tbody>
+						#foreach($entry in ${all_finish})
+						  <tr>
+						  <td>$!entry.jobUUID</td>
+						  <td>$entry.sparkRequest.runClassName</td>
+						  <td>$!entry.driver</td>
+						  <td>$!entry.sparkRequest.sparkMaster</td>
+						  <td>$entry.sparkRequest.sparkType</td>
+						  <td>$entry.sparkResponse.status</td>
+						  #if($entry.sparkResponse.message.length()>30)
+						  #set($length = $entry.sparkResponse.message.length() /2 )
+						  #set($sword = $entry.sparkResponse.message.substring(0, $length ))
+						  #else
+						  #set($sword = $entry.sparkResponse.message)
+						  #end
+						  <td><a href="/spark_job/finish_jobs/$!entry.jobUUID">$sword </a></td>
+						  <td>$entry.start</td>
+						  <td>$!entry.end</td>
+						  <td><a type='button' class='btn btn-default result_button'  href="/spark_job/start?runClassName=$entry.sparkRequest.runClassName">再跑一次</a></td>
+						  </tr>
+						#end
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+</html>

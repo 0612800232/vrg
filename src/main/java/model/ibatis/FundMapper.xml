@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caishuo.sst.common.dao.FundMapper">
+  <resultMap id="BaseResultMap" type="model.Fund">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="fund_account" jdbcType="VARCHAR" property="fundAccount" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="asset_balance" jdbcType="BIGINT" property="assetBalance" />
+    <result column="current_balance" jdbcType="BIGINT" property="currentBalance" />
+    <result column="enable_balance" jdbcType="BIGINT" property="enableBalance" />
+    <result column="money_type" jdbcType="VARCHAR" property="moneyType" />
+    <result column="fetch_balance" jdbcType="BIGINT" property="fetchBalance" />
+    <result column="forzen_balance" jdbcType="BIGINT" property="forzenBalance" />
+    <result column="trade_date" jdbcType="BIGINT" property="tradeDate" />
+    <result column="itn_broker_id" jdbcType="VARCHAR" property="itnBrokerId" />
+    <result column="undelivery_balance" jdbcType="BIGINT" property="undeliveryBalance" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, fund_account, password, asset_balance, current_balance, enable_balance, money_type, 
+    fetch_balance, forzen_balance, trade_date, itn_broker_id, undelivery_balance
+  </sql>
+  <select id="selectByExample" parameterType="model.FundExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from fund
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fund
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fund
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="model.FundExample">
+    delete from fund
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="model.Fund">
+    insert into fund (id, fund_account, password, 
+      asset_balance, current_balance, enable_balance, 
+      money_type, fetch_balance, forzen_balance, 
+      trade_date, itn_broker_id, undelivery_balance
+      )
+    values (#{id,jdbcType=BIGINT}, #{fundAccount,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{assetBalance,jdbcType=BIGINT}, #{currentBalance,jdbcType=BIGINT}, #{enableBalance,jdbcType=BIGINT}, 
+      #{moneyType,jdbcType=VARCHAR}, #{fetchBalance,jdbcType=BIGINT}, #{forzenBalance,jdbcType=BIGINT}, 
+      #{tradeDate,jdbcType=BIGINT}, #{itnBrokerId,jdbcType=VARCHAR}, #{undeliveryBalance,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="model.Fund">
+    insert into fund
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fundAccount != null">
+        fund_account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="assetBalance != null">
+        asset_balance,
+      </if>
+      <if test="currentBalance != null">
+        current_balance,
+      </if>
+      <if test="enableBalance != null">
+        enable_balance,
+      </if>
+      <if test="moneyType != null">
+        money_type,
+      </if>
+      <if test="fetchBalance != null">
+        fetch_balance,
+      </if>
+      <if test="forzenBalance != null">
+        forzen_balance,
+      </if>
+      <if test="tradeDate != null">
+        trade_date,
+      </if>
+      <if test="itnBrokerId != null">
+        itn_broker_id,
+      </if>
+      <if test="undeliveryBalance != null">
+        undelivery_balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fundAccount != null">
+        #{fundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="assetBalance != null">
+        #{assetBalance,jdbcType=BIGINT},
+      </if>
+      <if test="currentBalance != null">
+        #{currentBalance,jdbcType=BIGINT},
+      </if>
+      <if test="enableBalance != null">
+        #{enableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="moneyType != null">
+        #{moneyType,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchBalance != null">
+        #{fetchBalance,jdbcType=BIGINT},
+      </if>
+      <if test="forzenBalance != null">
+        #{forzenBalance,jdbcType=BIGINT},
+      </if>
+      <if test="tradeDate != null">
+        #{tradeDate,jdbcType=BIGINT},
+      </if>
+      <if test="itnBrokerId != null">
+        #{itnBrokerId,jdbcType=VARCHAR},
+      </if>
+      <if test="undeliveryBalance != null">
+        #{undeliveryBalance,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="model.FundExample" resultType="java.lang.Integer">
+    select count(*) from fund
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update fund
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.fundAccount != null">
+        fund_account = #{record.fundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.assetBalance != null">
+        asset_balance = #{record.assetBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.currentBalance != null">
+        current_balance = #{record.currentBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.enableBalance != null">
+        enable_balance = #{record.enableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.moneyType != null">
+        money_type = #{record.moneyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fetchBalance != null">
+        fetch_balance = #{record.fetchBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.forzenBalance != null">
+        forzen_balance = #{record.forzenBalance,jdbcType=BIGINT},
+      </if>
+      <if test="record.tradeDate != null">
+        trade_date = #{record.tradeDate,jdbcType=BIGINT},
+      </if>
+      <if test="record.itnBrokerId != null">
+        itn_broker_id = #{record.itnBrokerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.undeliveryBalance != null">
+        undelivery_balance = #{record.undeliveryBalance,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update fund
+    set id = #{record.id,jdbcType=BIGINT},
+      fund_account = #{record.fundAccount,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      asset_balance = #{record.assetBalance,jdbcType=BIGINT},
+      current_balance = #{record.currentBalance,jdbcType=BIGINT},
+      enable_balance = #{record.enableBalance,jdbcType=BIGINT},
+      money_type = #{record.moneyType,jdbcType=VARCHAR},
+      fetch_balance = #{record.fetchBalance,jdbcType=BIGINT},
+      forzen_balance = #{record.forzenBalance,jdbcType=BIGINT},
+      trade_date = #{record.tradeDate,jdbcType=BIGINT},
+      itn_broker_id = #{record.itnBrokerId,jdbcType=VARCHAR},
+      undelivery_balance = #{record.undeliveryBalance,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="model.Fund">
+    update fund
+    <set>
+      <if test="fundAccount != null">
+        fund_account = #{fundAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="assetBalance != null">
+        asset_balance = #{assetBalance,jdbcType=BIGINT},
+      </if>
+      <if test="currentBalance != null">
+        current_balance = #{currentBalance,jdbcType=BIGINT},
+      </if>
+      <if test="enableBalance != null">
+        enable_balance = #{enableBalance,jdbcType=BIGINT},
+      </if>
+      <if test="moneyType != null">
+        money_type = #{moneyType,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchBalance != null">
+        fetch_balance = #{fetchBalance,jdbcType=BIGINT},
+      </if>
+      <if test="forzenBalance != null">
+        forzen_balance = #{forzenBalance,jdbcType=BIGINT},
+      </if>
+      <if test="tradeDate != null">
+        trade_date = #{tradeDate,jdbcType=BIGINT},
+      </if>
+      <if test="itnBrokerId != null">
+        itn_broker_id = #{itnBrokerId,jdbcType=VARCHAR},
+      </if>
+      <if test="undeliveryBalance != null">
+        undelivery_balance = #{undeliveryBalance,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="model.Fund">
+    update fund
+    set fund_account = #{fundAccount,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      asset_balance = #{assetBalance,jdbcType=BIGINT},
+      current_balance = #{currentBalance,jdbcType=BIGINT},
+      enable_balance = #{enableBalance,jdbcType=BIGINT},
+      money_type = #{moneyType,jdbcType=VARCHAR},
+      fetch_balance = #{fetchBalance,jdbcType=BIGINT},
+      forzen_balance = #{forzenBalance,jdbcType=BIGINT},
+      trade_date = #{tradeDate,jdbcType=BIGINT},
+      itn_broker_id = #{itnBrokerId,jdbcType=VARCHAR},
+      undelivery_balance = #{undeliveryBalance,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+	<update id="updateByFundAccountSelective" parameterType="model.Fund">
+		update fund
+		<set>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="assetBalance != null">
+				asset_balance = enable_balance + #{assetBalance,jdbcType=BIGINT},
+			</if>
+			<if test="currentBalance != null">
+				current_balance = current_balance + #{currentBalance,jdbcType=BIGINT},
+			</if>
+			<if test="enableBalance != null">
+				enable_balance = enable_balance + #{enableBalance,jdbcType=BIGINT},
+			</if>
+			<if test="fetchBalance != null">
+				fetch_balance = fetch_balance + #{fetchBalance,jdbcType=BIGINT},
+			</if>
+			<if test="forzenBalance != null">
+				forzen_balance = #{forzenBalance,jdbcType=BIGINT},
+			</if>
+			<if test="undeliveryBalance != null">
+                undelivery_balance = undelivery_balance + #{undeliveryBalance,jdbcType=BIGINT},
+            </if>
+			<if test="tradeDate != null">
+				trade_date = #{tradeDate,jdbcType=BIGINT},
+			</if>
+			<if test="itnBrokerId != null">
+				itn_broker_id = #{itnBrokerId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where fund_account = #{fundAccount,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByReckoning" parameterType="model.Fund">
+		update fund
+		set enable_balance = current_balance,
+		fetch_balance = current_balance,
+		forzen_balance = 0
+		where money_type = 'CNY'
+	</update>
+	<update id="updateByReckoningByExtend" parameterType="model.FundExample">
+		update fund set forzen_balance = 0
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</update>
+	<select id="selectByCheckBlance" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fund where enable_balance != current_balance
+		and money_type = 'CNY'
+	</select>
+	<select id="selectByCheckBlanceByExtend"  parameterType="model.Fund" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fund where enable_balance != (current_balance + undelivery_balance)
+		<if test="moneyType != null">
+           and money_type = #{moneyType,jdbcType=VARCHAR}
+        </if>
+	</select>
+	<update id="updateByTradeSelective" parameterType="model.Fund">
+		update fund
+		<set>
+			<if test="enableBalance != null">
+				enable_balance = enable_balance + #{enableBalance,jdbcType=BIGINT},
+			</if>
+			<if test="fetchBalance != null">
+				fetch_balance = fetch_balance + #{fetchBalance,jdbcType=BIGINT},
+			</if>
+			<if test="forzenBalance != null">
+				forzen_balance = forzen_balance + #{forzenBalance,jdbcType=BIGINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR} 
+		  <!-- 
+		  and forzen_balance + #{forzenBalance,jdbcType=BIGINT} >= 0
+		  and enable_balance + #{enableBalance,jdbcType=BIGINT} >= 0
+		   -->
+	</update>
+	<select id="selectByExampleLock" parameterType="model.FundExample" resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from fund
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		FOR UPDATE
+	</select>
+	<update id="updateReckoningFrozenBalance" parameterType="model.FundExample" >
+	   update fund set enable_balance = enable_balance + forzen_balance
+	   <if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</update>
+</mapper>

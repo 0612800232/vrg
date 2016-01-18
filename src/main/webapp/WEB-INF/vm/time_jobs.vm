@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://192.168.1.37:8090/ -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spark Jobserver UI</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/index.css" rel="stylesheet">
+
+<script src="/resources/script/jquery.min.js"></script>
+<script src="/resources/script/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="page-header">
+		<h1>spark job 管理</h1>
+	</div>
+	<ul class="nav nav-tabs nav-justified" id="navTabs">
+		<li class=""><a href="/spark_job/jobs" >所有的可运行任务</a></li>
+		<li class=""><a href="/spark_job/running_jobs">运行中的任务</a></li>
+		<li class=""><a href="/spark_job/finish_jobs">运行完成的任务</a></li>
+		<li class="active"><a href="/spark_job/time_jobs" >所有的定时任务</a></li>
+		<li class=""><a href="/spark_job/hdfs_jars">hdfs jar 管理</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="spark_class">
+			<div class="panel panel-info">
+
+
+
+				<div class="panel-heading">系统中所有的定时任务</div>
+				<div class="panel-body">
+					<table class="table table-striped" id="runningJobsTable">
+						<thead>
+							<tr>
+								<th>名称</th>
+								<th>说明</th>
+								<th>cron</th>
+							</tr>
+						</thead>
+						<tbody>
+						#foreach($timeJob in ${timeJobs})
+						  <tr>
+						  <td>$timeJob.name</td>
+						  <td>$timeJob.desc</td>
+						  <td>$timeJob.cron</td>
+						  </tr>
+						#end
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<script>
+	
+	</script>
+</body>
+</html>

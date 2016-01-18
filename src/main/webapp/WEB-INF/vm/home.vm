@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://192.168.1.37:8090/ -->
+<html lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Spark Jobserver UI</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/index.css" rel="stylesheet">
+
+    <script src="resources/script/jquery.min.js"></script>
+    <script src="resources/script/bootstrap.min.js"></script>
+    <script src="resources/script/spark-jobserver-ui.js"></script>
+  </head>
+  <body>
+    <div class="page-header">
+      <h1>Spark Job Server UI</h1>
+    </div>
+    <ul class="nav nav-tabs nav-justified" id="navTabs">
+      <li class="active"><a href="#jobs" data-toggle="tab">Jobs</a></li>
+      <li class=""><a href="#contexts" data-toggle="tab">Contexts</a></li>
+      <li class=""><a href="#jars" data-toggle="tab">Jars</a></li>
+      <li class=""><a href="/spark_job/system_config">系统相关管理</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active" id="jobs">
+        <div class="panel panel-info">
+        
+        
+        <div class="panel panel-success">
+          <div class="panel-heading">新增 一个job</div>
+          <div class="panel-body">
+                  <form id="jobFrom" role="form" action="/api/jobs/" method="post">
+  				
+  			<div class="form-group">
+     			 <label for="name">app name</label>
+      			<input type="text" class="form-control" id="job_name"   placeholder="上传jar包所指定的app name">
+  			 </div>
+  			 
+  			<div class="form-group">
+     			 <label for="classPath">classPath </label>
+      			<input type="text" class="form-control" id="path"   placeholder="具体类的path">
+  			 </div>
+  			 <div class="radio">
+				   <label>
+				      <input type="radio" name="sync" id="sync1" 
+				         value="false" checked>异步返回
+				   </label>
+				</div>
+				<div class="radio">
+				   <label>
+				      <input type="radio" name="sync" id="sync2" 
+				         value="true">同步返回
+				   </label>
+				</div>
+  			 
+  			 
+   			<div class="form-group">
+     			 <label for="name">参数</label>
+     			 <textarea class="form-control" rows="3" id="context_body"></textarea>
+  			 </div>
+  			 
+  			 <button id="job_submit_button" type="button" class="btn btn-default" >提交</button>
+			</form>
+			</div>
+          </div>
+              			 <div class="panel" style="margin-top:30px">
+			<div class="alert alert-success alert-dismissable">
+   				<button type="button" class="close" data-dismiss="alert"   aria-hidden="true">&times;</button>
+   				<span id="job_message"></span>
+			</div>
+			</div>
+        
+        
+          <div class="panel-heading">Running Jobs</div>
+          <div class="panel-body">
+            <table class="table table-striped" id="runningJobsTable">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Classpath</th>
+                  <th>Context</th>
+                  <th>Start Time</th>
+                  <th>Duration</th>
+                  <th>查看结果</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-success">
+          <div class="panel-heading">Completed Jobs</div>
+          <div class="panel-body">
+            <table class="table table-striped" id="completedJobsTable">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Classpath</th>
+                  <th>Context</th>
+                  <th>Start Time</th>
+                  <th>Duration</th>
+                  <th>查看结果</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-danger">
+          <div class="panel-heading">Failed Jobs</div>
+          <div class="panel-body">
+            <table class="table table-striped" id="failedJobsTable">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Classpath</th>
+                  <th>Context</th>
+                  <th>Start Time</th>
+                  <th>Duration</th>
+                  <th>查看结果</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+      <div class="tab-pane" id="contexts">
+        <div class="panel">
+          <div class="panel-heading"></div>
+          <div class="panel-body">
+            <table class="table table-striped" id="contextsTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div class="panel panel-success">
+          <div class="panel-heading">新增 一个contexts</div>
+          <div class="panel-body">
+                  <form id="contextsFrom" role="form" action="/api/contexts/" method="post">
+  				
+  			<div class="form-group">
+     			 <label for="name">context name</label>
+      			<input type="text" class="form-control" id="context_name"   placeholder="context name">
+  			 </div>
+  			 
+  			 <div class="form-group">
+     			 <label for="factory">context factory</label>
+      			<select class="form-control" id="factory" placeholder="context factory">
+			         <option></option>
+			         <option value="spark.jobserver.context.StreamingContextFactory">StreamingContextFactory</option>
+			      </select>
+  			 </div>
+  			 
+  			 
+   			<div class="form-group">
+     			 <label for="name">参数</label>
+      			<input type="text" class="form-control" id="context_body"   placeholder="context body">
+  			 </div>
+  			 
+  			 <button id="context_submit_button" type="button" class="btn btn-default" >提交</button>
+			</form>
+			</div>
+          </div>
+        </div>
+            			 <div class="panel" style="margin-top:30px">
+			<div class="alert alert-success alert-dismissable">
+   				<button type="button" class="close" data-dismiss="alert"   aria-hidden="true">&times;</button>
+   				<span id="context_message"></span>
+			</div>
+			</div>
+      </div>
+      <div class="tab-pane" id="jars">
+        <div class="panel">
+          <div class="panel-heading"></div>
+          <div class="panel-body">
+            <table class="table table-striped" id="jarsTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Deployment Time</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+         <form id="jarFrom" role="form" action="/api/jars/" method="post" enctype="multipart/form-data">
+  				
+  			<div class="form-group">
+     			 <label for="name">appName</label>
+      			<input type="text" class="form-control" id="jar_name"   placeholder="请输入appName">
+  			 </div>
+   			<div class="form-group">
+      			<label for="inputfile">上传jar文件</label>
+     			 <input type="file" id="inputfile" name="inputfile">
+  			 </div>	
+  			 <button id="jar_submit_button" type="button" class="btn btn-default" >提交</button>
+			</form>
+			          			 <div class="panel" style="margin-top:30px">
+			<div class="alert alert-success alert-dismissable">
+   				<button type="button" class="close" data-dismiss="alert"   aria-hidden="true">&times;</button>
+   				<span id="jar_message"></span>
+			</div>
+			</div>
+      </div>
+
+    </div>
+    
+    
+  <script>
+  $("#jar_submit_button").click(function(){
+  if($("#jar_name").val().length==0){
+  $("#jar_message").html("请输入appName")
+  }else{
+   
+   	var fd = new FormData();
+	fd.append("upload", 1);
+	fd.append("upfile", $("#inputfile").get(0).files[0]);
+	$.ajax({
+		url: "/api/jars/" + $("#jar_name").val(),
+		type: "POST",
+		processData: false,
+		contentType: false,
+		data: fd,
+		success: function(d) {
+		$("#jar_message").html(d);
+		getJars();
+		}
+	});
+  }
+  })
+  
+  
+  
+    $("#context_submit_button").click(function(){
+	  if($("#context_name").val().length==0){
+	  $("#context_message").html("请输入context Name");
+	  return;
+	  }
+   
+   	var fd = new FormData();
+	fd.append("body", $("#context_body").val());
+	if($("#factory").val().length!=0)
+	{
+		fd.append("param", "context-factory=" + $("#factory").val());
+	}
+	
+	$.ajax({
+		url: "/api/contexts/" + $("#context_name").val(),
+		type: "POST",
+		processData: false,
+		contentType: false,
+		data: fd,
+		success: function(d) {
+		$("#context_message").html(d);
+		getContexts();
+		$("#contextsFrom")[0].reset();
+		}
+	});
+  })
+  
+  
+  
+  
+   $("#job_submit_button").click(function(){
+	  if($("#job_name").val().length==0){
+	  $("#job_message").html("请输入app Name");
+	  return;
+	  }
+	  
+	  if($("#path").val().length==0){
+	  $("#job_message").html("请输入class path");
+	  return;
+	  }
+	  
+	  
+   
+   	var fd = new FormData();
+	fd.append("body", $("#context_body").val());
+	fd.append("param", "appName=" + $("#job_name").val() +"&classPath=" + $("#path").val() +"&sync=" +  $('input:radio[name="sync"]:checked').val());
+	$.ajax({
+		url: "/api/jobs/" + $("#name").val(),
+		type: "POST",
+		processData: false,
+		contentType: false,
+		data: fd,
+		success: function(d) {
+		$("#job_message").html(d);
+		getContexts();
+		$("#contextsFrom")[0].reset();
+		}
+	});
+  })
+  </script>
+
+</body></html>

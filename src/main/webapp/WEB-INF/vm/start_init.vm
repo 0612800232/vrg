@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!-- saved from url=(0025)http://192.168.1.37:8090/ -->
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Spark Jobserver UI</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/index.css" rel="stylesheet">
+
+<script src="/resources/script/jquery.min.js"></script>
+<script src="/resources/script/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="page-header">
+		<h1>spark job 管理</h1>
+	</div>
+	<ul class="nav nav-tabs nav-justified" id="navTabs">
+		<li class=""><a href="/spark_job/jobs" >所有的可运行任务</a></li>
+		<li class=""><a href="/spark_job/running_jobs">运行中的任务</a></li>
+		<li class=""><a href="/spark_job/finish_jobs">运行完成的任务</a></li>
+		<li class=""><a href="/spark_job/time_jobs" >所有的定时任务</a></li>
+		<li class=""><a href="/spark_job/hdfs_jars">hdfs jar 管理</a></li>
+		<li class=""><a href="/spark_job/system_config">系统相关管理</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="spark_class">
+			<div class="panel panel-info">
+
+
+
+				<div class="panel-heading">创建一个新的spark job#if($config) (已运行过,显示上次运行的配置) #end</div>
+				<div class="panel-body">
+					<form id="jobFrom" role="form" action="/spark_job/start" method="post">
+
+						<div class="form-group">
+							<label for="name">运行spark的完整类名</label> <input
+								name = "runClassName" value="${request.runClassName}" type="text" class="form-control"
+								id="runClassName" placeholder="上传jar包所指定的app name">
+						</div>
+						
+						<div class="form-group">
+							<label for="name">spark任务类别</label> 
+							<input  value="${sparkTypeDesc}" type="text" class="form-control"
+								id="sparkType" disabled=true>
+						</div>
+
+						<div class="form-group">
+							<label for="classPath">spark mater</label> 
+							<select name="sparkMaster"
+								class="select form-control">
+								<option value="">请选择master</option>
+								<option #if($config.sparkMaster == '${sparkMater}') selected #end value="${sparkMater}">${sparkMater}</option>
+								
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="classPath">jars </label> 
+							#foreach($jar in ${config.jars})
+							<input value ="${jar}" type="text"	class="form-control"  name ="jars" placeholder="hdfs 上 spark excutor依赖的jar">
+							#end
+							<input type="text"	class="form-control"  name ="jars" placeholder="hdfs 上 spark excutor依赖的jar">
+							<input type="text"	class="form-control"  name ="jars" placeholder="hdfs 上 spark excutor依赖的jar">
+							<input type="text"	class="form-control"  name ="jars" placeholder="hdfs 上 spark excutor依赖的jar">
+						</div>
+						#if($!{request.sparkType}=="spark_job")
+						<div class="radio">
+							<label> <input type="radio" name="sync" id="sync1"
+								value="false" #if(!${config.sync}) checked #end>异步返回
+							</label>
+						</div>
+						<div class="radio">
+							<label> <input type="radio" name="sync" id="sync2"
+								#if(${config.sync}) checked #end  value="true" >同步返回
+							</label>
+						</div>
+						#end
+
+
+						<div class="form-group">
+							<label for="name">参数</label>
+							<textarea name="configs_info" class="form-control" rows="3" id="context_body">$!{config.configs}</textarea>
+						</div>
+
+						<button id="job_submit_button" type="submit"
+							class="btn btn-default">提交</button>
+					</form>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<script>
+		
+	</script>
+</body>
+</html>
