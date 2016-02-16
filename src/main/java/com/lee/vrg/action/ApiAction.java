@@ -1,4 +1,4 @@
-package com.caishuo.ga.action;
+package com.lee.vrg.action;
 
 import org.springframework.stereotype.Controller;
 

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lee.vrg.common.model.dao.LocationMapper" >
+  <resultMap id="BaseResultMap" type="com.lee.vrg.common.model.Location" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="x" property="x" jdbcType="VARCHAR" />
+    <result column="y" property="y" jdbcType="VARCHAR" />
+    <result column="location_type" property="locationType" jdbcType="INTEGER" />
+    <result column="day_hot" property="dayHot" jdbcType="INTEGER" />
+    <result column="week_hot" property="weekHot" jdbcType="INTEGER" />
+    <result column="month_hot" property="monthHot" jdbcType="INTEGER" />
+    <result column="year_hot" property="yearHot" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, x, y, location_type, day_hot, week_hot, month_hot, year_hot
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lee.vrg.common.model.LocationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from location
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.lee.vrg.common.model.LocationExample" >
+    delete from location
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lee.vrg.common.model.Location" >
+    insert into location (id, name, x, 
+      y, location_type, day_hot, 
+      week_hot, month_hot, year_hot
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{x,jdbcType=VARCHAR}, 
+      #{y,jdbcType=VARCHAR}, #{locationType,jdbcType=INTEGER}, #{dayHot,jdbcType=INTEGER}, 
+      #{weekHot,jdbcType=INTEGER}, #{monthHot,jdbcType=INTEGER}, #{yearHot,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lee.vrg.common.model.Location" >
+    insert into location
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="x != null" >
+        x,
+      </if>
+      <if test="y != null" >
+        y,
+      </if>
+      <if test="locationType != null" >
+        location_type,
+      </if>
+      <if test="dayHot != null" >
+        day_hot,
+      </if>
+      <if test="weekHot != null" >
+        week_hot,
+      </if>
+      <if test="monthHot != null" >
+        month_hot,
+      </if>
+      <if test="yearHot != null" >
+        year_hot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="x != null" >
+        #{x,jdbcType=VARCHAR},
+      </if>
+      <if test="y != null" >
+        #{y,jdbcType=VARCHAR},
+      </if>
+      <if test="locationType != null" >
+        #{locationType,jdbcType=INTEGER},
+      </if>
+      <if test="dayHot != null" >
+        #{dayHot,jdbcType=INTEGER},
+      </if>
+      <if test="weekHot != null" >
+        #{weekHot,jdbcType=INTEGER},
+      </if>
+      <if test="monthHot != null" >
+        #{monthHot,jdbcType=INTEGER},
+      </if>
+      <if test="yearHot != null" >
+        #{yearHot,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lee.vrg.common.model.LocationExample" resultType="java.lang.Integer" >
+    select count(*) from location
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update location
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.x != null" >
+        x = #{record.x,jdbcType=VARCHAR},
+      </if>
+      <if test="record.y != null" >
+        y = #{record.y,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationType != null" >
+        location_type = #{record.locationType,jdbcType=INTEGER},
+      </if>
+      <if test="record.dayHot != null" >
+        day_hot = #{record.dayHot,jdbcType=INTEGER},
+      </if>
+      <if test="record.weekHot != null" >
+        week_hot = #{record.weekHot,jdbcType=INTEGER},
+      </if>
+      <if test="record.monthHot != null" >
+        month_hot = #{record.monthHot,jdbcType=INTEGER},
+      </if>
+      <if test="record.yearHot != null" >
+        year_hot = #{record.yearHot,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update location
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      x = #{record.x,jdbcType=VARCHAR},
+      y = #{record.y,jdbcType=VARCHAR},
+      location_type = #{record.locationType,jdbcType=INTEGER},
+      day_hot = #{record.dayHot,jdbcType=INTEGER},
+      week_hot = #{record.weekHot,jdbcType=INTEGER},
+      month_hot = #{record.monthHot,jdbcType=INTEGER},
+      year_hot = #{record.yearHot,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

@@ -1,4 +1,4 @@
-package com.caishuo.market.socket;
+package com.lee.vrg.socket;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.EventLoopGroup;
