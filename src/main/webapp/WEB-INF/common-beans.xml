@@ -36,10 +36,10 @@
 	</bean>
 
 	<context:property-placeholder location="classpath:config.properties" />
-
-	<context:component-scan
-		base-package="com.caishuo.ga,com.caishuo.common,com.caishuo.market" />
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="com.lee.vrg.common" />
 	<task:annotation-driven />
+
 
 	<bean id="scheduledExecutor"
 		class="org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean">
@@ -117,7 +117,7 @@
 	</bean>
 
 	<redis:listener-container connection-factory="jedisConnectionFactory">
-		
+
 	</redis:listener-container>
 
 
