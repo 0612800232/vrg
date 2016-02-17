@@ -28,7 +28,7 @@ public class LocationTypeServiceImpl implements LocationTypeService {
 		LocationType LocationType = locationTypeMapper.selectByPrimaryKey(id);
 		if (LocationType != null) {
 			BeanUtils.copyProperties(locationTypeMapper.selectByPrimaryKey(id), locationTypeBo);
-		}else{
+		} else {
 			throw new BaseVrgException("-2", "locationType.no.exist");
 		}
 		return locationTypeBo;
@@ -80,7 +80,15 @@ public class LocationTypeServiceImpl implements LocationTypeService {
 		if (locationTypes.size() > 0 && !locationTypes.get(0).getId().equals(locationTypeBo.getId())) {
 			throw new BaseVrgException("-2", "locationType.name.exist");
 		}
-		locationTypeMapper.updateByPrimaryKeySelective(locationType);
+
+		if (locationTypeMapper.selectByPrimaryKey(locationTypeBo.getId()) == null) {
+			throw new BaseVrgException("-2", "locationType.no.exist");
+		}
+
+		int result = locationTypeMapper.updateByPrimaryKeySelective(locationType);
+		if (result==0) {
+			throw new BaseVrgException("-2", "locationType.update.error");
+		}
 		return locationTypeBo;
 	}
 

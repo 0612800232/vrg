@@ -80,7 +80,13 @@ public class UserSerivceImpl implements UserService {
 			throw new BaseVrgException("-2", "user.mobileNo.exist");
 		}
 
-		userMapper.updateByPrimaryKeySelective(user);
+		if (userMapper.selectByPrimaryKey(user.getId()) == null) {
+			throw new BaseVrgException("-2", "user.no.exist");
+		}
+		int result = userMapper.updateByPrimaryKeySelective(user);
+		if (result == 0) {
+			throw new BaseVrgException("-2", "user.update.error");
+		}
 		return userBo;
 	}
 
