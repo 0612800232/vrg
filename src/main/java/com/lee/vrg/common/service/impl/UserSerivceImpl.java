@@ -53,7 +53,7 @@ public class UserSerivceImpl implements UserService {
 				UserBo user = new UserBo();
 				BeanUtils.copyProperties(users.get(0), user);
 				return user;
-			}else{
+			} else {
 				throw new BaseVrgException("-3", "user.login.mobileNo.no.exist");
 			}
 		}
@@ -65,6 +65,22 @@ public class UserSerivceImpl implements UserService {
 		UserBo userBo = new UserBo();
 		User use = userMapper.selectByPrimaryKey(id);
 		BeanUtils.copyProperties(use, userBo);
+		return userBo;
+	}
+
+	@Override
+	public UserBo update(UserBo userBo) throws BaseVrgException {
+		User user = new User();
+		BeanUtils.copyProperties(userBo, user);
+
+		UserExample example = new UserExample();
+		example.createCriteria().andMobileNoEqualTo(userBo.getMobileNo());
+		List<User> users = userMapper.selectByExample(example);
+		if (users.size() > 0 && !users.get(0).getId().equals(userBo.getId())) {
+			throw new BaseVrgException("-2", "user.mobileNo.exist");
+		}
+
+		userMapper.updateByPrimaryKeySelective(user);
 		return userBo;
 	}
 

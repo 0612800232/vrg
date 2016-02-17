@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 
 import com.caishuo.common.util.StringUtil;
+import com.lee.vrg.common.bo.ResponeBo;
 import com.lee.vrg.common.exception.BaseVrgException;
 import com.lee.vrg.exception.RequestException;
 

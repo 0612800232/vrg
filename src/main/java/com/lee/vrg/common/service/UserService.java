@@ -34,4 +34,6 @@ public interface UserService {
 	 */
 	public UserBo getUser(Integer id);
 
+	public UserBo update(UserBo user) throws BaseVrgException;
+
 }

@@ -9,9 +9,15 @@ import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import com.alibaba.fastjson.JSON;
+import com.caishuo.common.util.StringUtil;
 import com.lee.vrg.common.exception.BaseVrgException;
 import com.lee.vrg.util.DESUtil;
 
+/**
+ * 
+ * @author dell
+ *
+ */
 @Service
 public class UserAgentArgumentResolver implements WebArgumentResolver {
 
@@ -19,6 +25,16 @@ public class UserAgentArgumentResolver implements WebArgumentResolver {
 		if (methodParameter.getParameterType().equals(UserAgent.class)) {
 
 			HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
+
+			if (StringUtil.isNotBlank(request.getHeader("UserAgent"))) {
+				try {
+					UserAgent userAgent = JSON.parseObject(DESUtil.decrypt(request.getHeader("UserAgent")),
+							UserAgent.class);
+					return userAgent;
+				} catch (Exception e) {
+					throw new BaseVrgException("-9", "user.need.login");
+				}
+			}
 
 			for (Cookie cookie : request.getCookies()) {
 				if (cookie.getName().equals("UserAgent")) {

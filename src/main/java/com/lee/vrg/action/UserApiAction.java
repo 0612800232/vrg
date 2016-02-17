@@ -1,7 +1,7 @@
 package com.lee.vrg.action;
 
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.lee.vrg.Interceptor.LoginValid;
 import com.lee.vrg.Interceptor.UserAgent;
+import com.lee.vrg.common.bo.ResponeBo;
 import com.lee.vrg.common.bo.UserBo;
 import com.lee.vrg.common.service.UserService;
 import com.lee.vrg.util.DESUtil;
@@ -46,7 +47,11 @@ public class UserApiAction extends BaseAction {
 
 		UserAgent userAgent = new UserAgent();
 		userAgent.setId(user.getId());
-		response.addCookie(new Cookie("UserAgent", DESUtil.encrypt(JSON.toJSONString(userAgent))));
+		Cookie cookie = new Cookie("UserAgent", DESUtil.encrypt(JSON.toJSONString(userAgent)));
+		cookie.setDomain("51go2.com");
+		cookie.setPath("/");
+		cookie.setMaxAge(-1);
+		response.addCookie(cookie);
 		return responeBo;
 	}
 
@@ -61,7 +66,11 @@ public class UserApiAction extends BaseAction {
 
 		UserAgent userAgent = new UserAgent();
 		userAgent.setId(user.getId());
-		response.addCookie(new Cookie("UserAgent", DESUtil.encrypt(JSON.toJSONString(userAgent))));
+		Cookie cookie = new Cookie("UserAgent", DESUtil.encrypt(JSON.toJSONString(userAgent)));
+		cookie.setDomain("127.0.0.1");
+		cookie.setPath("/");
+		cookie.setMaxAge(-1);
+		response.addCookie(cookie);
 		return responeBo;
 	}
 
@@ -72,6 +81,19 @@ public class UserApiAction extends BaseAction {
 			throws Exception {
 		ResponeBo responeBo = new ResponeBo();
 		responeBo.setData(userService.getUser(userAgent.getId()));
+		return responeBo;
+	}
+
+	@LoginValid
+	@RequestMapping(value = "/update.json", method = PUT)
+	@ResponseBody
+	public ResponeBo update(UserAgent userAgent, @Valid UserBo user, BindingResult result, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+		requestValid(result, request);
+		ResponeBo responeBo = new ResponeBo();
+		user.setId(userAgent.getId());
+		responeBo.setMessage(getLoclMsg("user.update.success", request));
+		responeBo.setData(userService.update(user));
 		return responeBo;
 	}
 

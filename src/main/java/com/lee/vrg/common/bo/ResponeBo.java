@@ -1,4 +1,4 @@
-package com.lee.vrg.action;
+package com.lee.vrg.common.bo;
 
 /**
  * 返回的对象类
