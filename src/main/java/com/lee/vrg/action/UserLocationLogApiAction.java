@@ -16,55 +16,56 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lee.vrg.Interceptor.LoginValid;
 import com.lee.vrg.Interceptor.UserAgent;
-import com.lee.vrg.common.bo.LocationTypeBo;
 import com.lee.vrg.common.bo.ResponeBo;
+import com.lee.vrg.common.bo.UserLocationLogBo;
 import com.lee.vrg.common.exception.BaseVrgException;
-import com.lee.vrg.common.service.LocationTypeService;
+import com.lee.vrg.common.service.UserLocationLogService;
 
 @Controller
-@RequestMapping("/api/location_type")
-public class LocationTypeApiAction extends BaseAction {
+@RequestMapping("/api/user_location_log")
+public class UserLocationLogApiAction extends BaseAction {
 	@Autowired
-	LocationTypeService locationTypeService;
+	UserLocationLogService userLocationLogService;
 
 	@RequestMapping(value = "/get.json", method = GET)
 	@ResponseBody
 	@LoginValid
 	public ResponeBo get(Integer id) throws BaseVrgException {
 		ResponeBo responeBo = new ResponeBo();
-		responeBo.setData(locationTypeService.get(id));
+		responeBo.setData(userLocationLogService.get(id));
 		return responeBo;
 	}
 
 	@RequestMapping(value = "/query.json")
 	@ResponseBody
 	@LoginValid
-	public ResponeBo query(LocationTypeBo locationTypeBo) {
+	public ResponeBo query(UserAgent userAgent,UserLocationLogBo userLocationLogBo) {
 		ResponeBo responeBo = new ResponeBo();
-		responeBo.setData(locationTypeService.query(locationTypeBo));
+		userLocationLogBo.setUserId(userAgent.getId());
+		responeBo.setData(userLocationLogService.query(userLocationLogBo));
 		return responeBo;
 	}
 
 	@RequestMapping(value = "/insert.json", method = POST)
 	@ResponseBody
 	@LoginValid
-	public ResponeBo insert(UserAgent userAgent, @Valid LocationTypeBo locationTypeBo, BindingResult result,
+	public ResponeBo insert(UserAgent userAgent, @Valid UserLocationLogBo userLocationLogBo, BindingResult result,
 			HttpServletRequest request) throws BaseVrgException {
 		ResponeBo responeBo = new ResponeBo();
 		requestValid(result, request);
-		locationTypeBo.setCreaterId(userAgent.getId());
-		responeBo.setData(locationTypeService.insert(locationTypeBo));
+		userLocationLogBo.setUserId(userAgent.getId());
+		responeBo.setData(userLocationLogService.insert(userLocationLogBo));
 		return responeBo;
 	}
 
 	@RequestMapping(value = "/update.json", method = PUT)
 	@ResponseBody
 	@LoginValid
-	public ResponeBo update(@Valid LocationTypeBo locationTypeBo, BindingResult result, HttpServletRequest request)
-			throws BaseVrgException {
+	public ResponeBo update(@Valid UserLocationLogBo userLocationLogBo, BindingResult result,
+			HttpServletRequest request) throws BaseVrgException {
 		ResponeBo responeBo = new ResponeBo();
 		requestValid(result, request);
-		responeBo.setData(locationTypeService.update(locationTypeBo));
+		responeBo.setData(userLocationLogService.update(userLocationLogBo));
 		return responeBo;
 	}
 
@@ -73,10 +74,10 @@ public class LocationTypeApiAction extends BaseAction {
 	@LoginValid
 	public ResponeBo delete(Integer id, HttpServletRequest request) {
 		ResponeBo responeBo = new ResponeBo();
-		boolean result = locationTypeService.delete(id);
+		boolean result = userLocationLogService.delete(id);
 		responeBo.setCode(result ? "0" : "-1");
-		responeBo.setMessage(result ? getLoclMsg("locationType.del.success", request)
-				: getLoclMsg("locationType.del.error", request));
+		responeBo.setMessage(
+				result ? getLoclMsg("user.location.log.del.success", request) : getLoclMsg("user.location.log.del.error", request));
 		return responeBo;
 	}
 

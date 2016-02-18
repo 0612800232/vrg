@@ -39,7 +39,7 @@ public class LocationTypeServiceImpl implements LocationTypeService {
 		LocationTypeExample example = new LocationTypeExample();
 		Criteria criteria = example.createCriteria();
 		if (StringUtil.isNotBlank(locationTypeBo.getName())) {
-			criteria.andNameLike(locationTypeBo.getName());
+			criteria.andNameLike("%"+ locationTypeBo.getName()+"%");
 		}
 		List<LocationType> locationTypes = locationTypeMapper.selectByExample(example);
 		List<LocationTypeBo> locationTypeBos = new ArrayList<LocationTypeBo>();

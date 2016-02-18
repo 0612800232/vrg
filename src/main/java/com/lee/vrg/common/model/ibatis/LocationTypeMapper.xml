@@ -6,6 +6,9 @@
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="location_type_desc" property="locationTypeDesc"
 			jdbcType="VARCHAR" />
+		<result column="creater_id" property="createrId" jdbcType="INTEGER" />
+		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -71,7 +74,7 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name, location_type_desc
+		id, name, location_type_desc, creater_id, gmt_create, gmt_modify
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.lee.vrg.common.model.LocationTypeExample">
@@ -106,10 +109,12 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.lee.vrg.common.model.LocationType">
-		insert into location_type (id, name, location_type_desc
+		insert into location_type (id, name, location_type_desc,
+		creater_id, gmt_create, gmt_modify
 		)
 		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
-		#{locationTypeDesc,jdbcType=VARCHAR}
+		#{locationTypeDesc,jdbcType=VARCHAR},
+		#{createrId,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.lee.vrg.common.model.LocationType">
@@ -124,6 +129,15 @@
 			<if test="locationTypeDesc != null">
 				location_type_desc,
 			</if>
+			<if test="createrId != null">
+				creater_id,
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create,
+			</if>
+			<if test="gmtModify != null">
+				gmt_modify,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -134,6 +148,15 @@
 			</if>
 			<if test="locationTypeDesc != null">
 				#{locationTypeDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="createrId != null">
+				#{createrId,jdbcType=INTEGER},
+			</if>
+			<if test="gmtCreate != null">
+				#{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModify != null">
+				#{gmtModify,jdbcType=TIMESTAMP},
 			</if>
 		</trim>
 		<selectKey resultType="java.lang.Integer" keyProperty="id">
@@ -159,6 +182,15 @@
 			<if test="record.locationTypeDesc != null">
 				location_type_desc = #{record.locationTypeDesc,jdbcType=VARCHAR},
 			</if>
+			<if test="record.createrId != null">
+				creater_id = #{record.createrId,jdbcType=INTEGER},
+			</if>
+			<if test="record.gmtCreate != null">
+				gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.gmtModify != null">
+				gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+			</if>
 		</set>
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
@@ -168,7 +200,10 @@
 		update location_type
 		set id = #{record.id,jdbcType=INTEGER},
 		name = #{record.name,jdbcType=VARCHAR},
-		location_type_desc = #{record.locationTypeDesc,jdbcType=VARCHAR}
+		location_type_desc = #{record.locationTypeDesc,jdbcType=VARCHAR},
+		creater_id = #{record.createrId,jdbcType=INTEGER},
+		gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -182,13 +217,25 @@
 			<if test="locationTypeDesc != null">
 				location_type_desc = #{locationTypeDesc,jdbcType=VARCHAR},
 			</if>
+			<if test="createrId != null">
+				creater_id = #{createrId,jdbcType=INTEGER},
+			</if>
+			<if test="gmtCreate != null">
+				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModify != null">
+				gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.LocationType">
 		update location_type
 		set name = #{name,jdbcType=VARCHAR},
-		location_type_desc = #{locationTypeDesc,jdbcType=VARCHAR}
+		location_type_desc = #{locationTypeDesc,jdbcType=VARCHAR},
+		creater_id = #{createrId,jdbcType=INTEGER},
+		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

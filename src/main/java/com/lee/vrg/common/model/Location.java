@@ -1,9 +1,15 @@
 package com.lee.vrg.common.model;
 
+import java.util.Date;
+
 public class Location {
     private Integer id;
 
     private String name;
+
+    private String locationDesc;
+
+    private String logo;
 
     private String x;
 
@@ -19,6 +25,14 @@ public class Location {
 
     private Integer yearHot;
 
+    private Integer createrId;
+
+    private Integer ownerId;
+
+    private Date gmtCreate;
+
+    private Date gmtModify;
+
     public Integer getId() {
         return id;
     }
@@ -33,6 +47,22 @@ public class Location {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getLocationDesc() {
+        return locationDesc;
+    }
+
+    public void setLocationDesc(String locationDesc) {
+        this.locationDesc = locationDesc == null ? null : locationDesc.trim();
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo == null ? null : logo.trim();
     }
 
     public String getX() {
@@ -89,5 +119,37 @@ public class Location {
 
     public void setYearHot(Integer yearHot) {
         this.yearHot = yearHot;
+    }
+
+    public Integer getCreaterId() {
+        return createrId;
+    }
+
+    public void setCreaterId(Integer createrId) {
+        this.createrId = createrId;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModify() {
+        return gmtModify;
+    }
+
+    public void setGmtModify(Date gmtModify) {
+        this.gmtModify = gmtModify;
     }
 }
