@@ -30,7 +30,7 @@ public class GoodsTypeApiAction extends BaseAction {
 	@RequestMapping(value = "/get.json", method = GET)
 	@ResponseBody
 	@LoginValid
-	public ResponeBo get(Integer id) throws BaseVrgException {
+	public ResponeBo get(Long id) throws BaseVrgException {
 		ResponeBo responeBo = new ResponeBo();
 		responeBo.setData(goodsTypeService.get(id));
 		return responeBo;
@@ -71,7 +71,7 @@ public class GoodsTypeApiAction extends BaseAction {
 	@RequestMapping(value = "/delete.json", method = DELETE)
 	@ResponseBody
 	@LoginValid
-	public ResponeBo delete(Integer id, HttpServletRequest request) {
+	public ResponeBo delete(Long id, HttpServletRequest request) {
 		ResponeBo responeBo = new ResponeBo();
 		boolean result = goodsTypeService.delete(id);
 		responeBo.setCode(result ? "0" : "-1");

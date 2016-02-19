@@ -3,23 +3,23 @@ package com.lee.vrg.common.bo;
 import java.util.Date;
 
 public class GoodsTypeBo {
-    private Integer id;
+    private Long id;
 
     private String name;
 
     private String goodsTypeDesc;
 
-    private Integer createrId;
+    private Long createrId;
 
     private Date gmtCreate;
 
     private Date gmtModify;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class GoodsTypeBo {
         this.goodsTypeDesc = goodsTypeDesc == null ? null : goodsTypeDesc.trim();
     }
 
-    public Integer getCreaterId() {
+    public Long getCreaterId() {
         return createrId;
     }
 
-    public void setCreaterId(Integer createrId) {
+    public void setCreaterId(Long createrId) {
         this.createrId = createrId;
     }
 

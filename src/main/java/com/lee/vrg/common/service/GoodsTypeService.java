@@ -7,7 +7,7 @@ import com.lee.vrg.common.exception.BaseVrgException;
 
 public interface GoodsTypeService {
 
-	public GoodsTypeBo get(Integer id) throws BaseVrgException;
+	public GoodsTypeBo get(Long id) throws BaseVrgException;
 
 	public List<GoodsTypeBo> query(GoodsTypeBo goodsTypeBo);
 
@@ -15,5 +15,5 @@ public interface GoodsTypeService {
 
 	public GoodsTypeBo update(GoodsTypeBo goodsTypeBo) throws BaseVrgException;
 
-	public boolean delete(Integer id);
+	public boolean delete(Long id);
 }

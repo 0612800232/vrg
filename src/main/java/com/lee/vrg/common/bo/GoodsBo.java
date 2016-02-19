@@ -3,31 +3,31 @@ package com.lee.vrg.common.bo;
 import java.util.Date;
 
 public class GoodsBo {
-    private Integer id;
+    private Long id;
 
     private String name;
 
-    private Integer goodsType;
+    private Long goodsType;
 
     private String goodsDesc;
 
     private String logo;
 
-    private Integer locationId;
+    private Long locationId;
 
-    private Integer createrId;
+    private Long createrId;
 
-    private Integer ownerId;
+    private Long ownerId;
 
     private Date gmtCreate;
 
     private Date gmtModify;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -39,11 +39,11 @@ public class GoodsBo {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getGoodsType() {
+    public Long getGoodsType() {
         return goodsType;
     }
 
-    public void setGoodsType(Integer goodsType) {
+    public void setGoodsType(Long goodsType) {
         this.goodsType = goodsType;
     }
 
@@ -63,27 +63,27 @@ public class GoodsBo {
         this.logo = logo == null ? null : logo.trim();
     }
 
-    public Integer getLocationId() {
+    public Long getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(Integer locationId) {
+    public void setLocationId(Long locationId) {
         this.locationId = locationId;
     }
 
-    public Integer getCreaterId() {
+    public Long getCreaterId() {
         return createrId;
     }
 
-    public void setCreaterId(Integer createrId) {
+    public void setCreaterId(Long createrId) {
         this.createrId = createrId;
     }
 
-    public Integer getOwnerId() {
+    public Long getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(Integer ownerId) {
+    public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
 

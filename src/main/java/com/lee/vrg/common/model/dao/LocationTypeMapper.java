@@ -10,7 +10,7 @@ public interface LocationTypeMapper {
 
     int deleteByExample(LocationTypeExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(LocationType record);
 
@@ -18,7 +18,7 @@ public interface LocationTypeMapper {
 
     List<LocationType> selectByExample(LocationTypeExample example);
 
-    LocationType selectByPrimaryKey(Integer id);
+    LocationType selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") LocationType record, @Param("example") LocationTypeExample example);
 

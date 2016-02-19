@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lee.vrg.common.model.dao.LocationTypeMapper">
 	<resultMap id="BaseResultMap" type="com.lee.vrg.common.model.LocationType">
-		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="location_type_desc" property="locationTypeDesc"
 			jdbcType="VARCHAR" />
-		<result column="creater_id" property="createrId" jdbcType="INTEGER" />
+		<result column="creater_id" property="createrId" jdbcType="BIGINT" />
 		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
 		<result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
 	</resultMap>
@@ -24,7 +24,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -56,7 +57,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -74,7 +76,8 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name, location_type_desc, creater_id, gmt_create, gmt_modify
+		id, name, location_type_desc, creater_id, gmt_create,
+		gmt_modify
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.lee.vrg.common.model.LocationTypeExample">
@@ -92,15 +95,16 @@
 		</if>
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
+		parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from location_type
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from location_type
-		where id = #{id,jdbcType=INTEGER}
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		location_type
+		where id = #{id,jdbcType=BIGINT}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.lee.vrg.common.model.LocationTypeExample">
 		delete from location_type
@@ -110,12 +114,16 @@
 	</delete>
 	<insert id="insert" parameterType="com.lee.vrg.common.model.LocationType">
 		insert into location_type (id, name, location_type_desc,
-		creater_id, gmt_create, gmt_modify
+		creater_id,
+		gmt_create, gmt_modify
 		)
-		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values (#{id,jdbcType=BIGINT},
+		#{name,jdbcType=VARCHAR},
 		#{locationTypeDesc,jdbcType=VARCHAR},
-		#{createrId,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+		#{createrId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
+		#{gmtModify,jdbcType=TIMESTAMP}
 		)
+		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
 	</insert>
 	<insert id="insertSelective" parameterType="com.lee.vrg.common.model.LocationType">
 		insert into location_type
@@ -141,7 +149,7 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
-				#{id,jdbcType=INTEGER},
+				#{id,jdbcType=BIGINT},
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
@@ -150,7 +158,7 @@
 				#{locationTypeDesc,jdbcType=VARCHAR},
 			</if>
 			<if test="createrId != null">
-				#{createrId,jdbcType=INTEGER},
+				#{createrId,jdbcType=BIGINT},
 			</if>
 			<if test="gmtCreate != null">
 				#{gmtCreate,jdbcType=TIMESTAMP},
@@ -159,9 +167,7 @@
 				#{gmtModify,jdbcType=TIMESTAMP},
 			</if>
 		</trim>
-		<selectKey resultType="java.lang.Integer" keyProperty="id">
-			SELECT @@IDENTITY AS ID
-		</selectKey>
+		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
 	</insert>
 	<select id="countByExample" parameterType="com.lee.vrg.common.model.LocationTypeExample"
 		resultType="java.lang.Integer">
@@ -174,16 +180,17 @@
 		update location_type
 		<set>
 			<if test="record.id != null">
-				id = #{record.id,jdbcType=INTEGER},
+				id = #{record.id,jdbcType=BIGINT},
 			</if>
 			<if test="record.name != null">
 				name = #{record.name,jdbcType=VARCHAR},
 			</if>
 			<if test="record.locationTypeDesc != null">
-				location_type_desc = #{record.locationTypeDesc,jdbcType=VARCHAR},
+				location_type_desc =
+				#{record.locationTypeDesc,jdbcType=VARCHAR},
 			</if>
 			<if test="record.createrId != null">
-				creater_id = #{record.createrId,jdbcType=INTEGER},
+				creater_id = #{record.createrId,jdbcType=BIGINT},
 			</if>
 			<if test="record.gmtCreate != null">
 				gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -198,12 +205,17 @@
 	</update>
 	<update id="updateByExample" parameterType="map">
 		update location_type
-		set id = #{record.id,jdbcType=INTEGER},
-		name = #{record.name,jdbcType=VARCHAR},
-		location_type_desc = #{record.locationTypeDesc,jdbcType=VARCHAR},
-		creater_id = #{record.createrId,jdbcType=INTEGER},
-		gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-		gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}
+		set id = #{record.id,jdbcType=BIGINT},
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		location_type_desc =
+		#{record.locationTypeDesc,jdbcType=VARCHAR},
+		creater_id =
+		#{record.createrId,jdbcType=BIGINT},
+		gmt_create =
+		#{record.gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modify =
+		#{record.gmtModify,jdbcType=TIMESTAMP}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -215,10 +227,11 @@
 				name = #{name,jdbcType=VARCHAR},
 			</if>
 			<if test="locationTypeDesc != null">
-				location_type_desc = #{locationTypeDesc,jdbcType=VARCHAR},
+				location_type_desc =
+				#{locationTypeDesc,jdbcType=VARCHAR},
 			</if>
 			<if test="createrId != null">
-				creater_id = #{createrId,jdbcType=INTEGER},
+				creater_id = #{createrId,jdbcType=BIGINT},
 			</if>
 			<if test="gmtCreate != null">
 				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -227,15 +240,20 @@
 				gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
 			</if>
 		</set>
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.LocationType">
-		update location_type
+		update
+		location_type
 		set name = #{name,jdbcType=VARCHAR},
-		location_type_desc = #{locationTypeDesc,jdbcType=VARCHAR},
-		creater_id = #{createrId,jdbcType=INTEGER},
-		gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-		gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
-		where id = #{id,jdbcType=INTEGER}
+		location_type_desc =
+		#{locationTypeDesc,jdbcType=VARCHAR},
+		creater_id =
+		#{createrId,jdbcType=BIGINT},
+		gmt_create =
+		#{gmtCreate,jdbcType=TIMESTAMP},
+		gmt_modify =
+		#{gmtModify,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
 	</update>
 </mapper>

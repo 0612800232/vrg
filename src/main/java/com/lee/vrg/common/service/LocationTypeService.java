@@ -7,7 +7,7 @@ import com.lee.vrg.common.exception.BaseVrgException;
 
 public interface LocationTypeService {
 
-	public LocationTypeBo get(Integer id) throws BaseVrgException;
+	public LocationTypeBo get(Long id) throws BaseVrgException;
 
 	public List<LocationTypeBo> query(LocationTypeBo locationTypeBo);
 
@@ -15,5 +15,5 @@ public interface LocationTypeService {
 
 	public LocationTypeBo update(LocationTypeBo locationTypeBo) throws BaseVrgException;
 
-	public boolean delete(Integer id);
+	public boolean delete(Long id);
 }

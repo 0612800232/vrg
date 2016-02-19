@@ -22,7 +22,7 @@ public class LocationTypeServiceImpl implements LocationTypeService {
 	LocationTypeMapper locationTypeMapper;
 
 	@Override
-	public LocationTypeBo get(Integer id) throws BaseVrgException {
+	public LocationTypeBo get(Long id) throws BaseVrgException {
 		LocationTypeBo locationTypeBo = new LocationTypeBo();
 
 		LocationType LocationType = locationTypeMapper.selectByPrimaryKey(id);
@@ -93,7 +93,7 @@ public class LocationTypeServiceImpl implements LocationTypeService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean delete(Long id) {
 		return locationTypeMapper.deleteByPrimaryKey(id) > 0 ? true : false;
 	}
 

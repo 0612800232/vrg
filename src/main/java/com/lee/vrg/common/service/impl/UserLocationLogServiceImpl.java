@@ -21,7 +21,7 @@ public class UserLocationLogServiceImpl implements UserLocationLogService {
 	UserLocationLogMapper userLocationLogMapper;
 
 	@Override
-	public UserLocationLogBo get(Integer id) throws BaseVrgException {
+	public UserLocationLogBo get(Long id) throws BaseVrgException {
 		UserLocationLogBo userLocationLogBo = new UserLocationLogBo();
 
 		UserLocationLog UserLocationLog = userLocationLogMapper.selectByPrimaryKey(id);
@@ -78,7 +78,7 @@ public class UserLocationLogServiceImpl implements UserLocationLogService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean delete(Long id) {
 		return userLocationLogMapper.deleteByPrimaryKey(id) > 0 ? true : false;
 	}
 

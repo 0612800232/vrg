@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserBo {
-	private Integer id;
+	private Long id;
 
 	@NotEmpty(message = "user.name.null")
 	@Length(min = 5, max = 20, message = "user.name.length.illegal")
@@ -40,11 +40,11 @@ public class UserBo {
 
 	private Date gmtModify;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

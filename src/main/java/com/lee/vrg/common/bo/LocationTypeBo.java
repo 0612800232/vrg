@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class LocationTypeBo {
-	private Integer id;
+	private Long id;
 
 	@NotEmpty(message = "locationType.name.null")
 	@Length(min = 5, max = 20, message = "locationType.name.length.illegal")
@@ -14,17 +14,17 @@ public class LocationTypeBo {
 
 	private String locationTypeDesc;
 
-	private Integer createrId;
+	private Long createrId;
 
 	private Date gmtCreate;
 
 	private Date gmtModify;
 
-	public Integer getCreaterId() {
+	public Long getCreaterId() {
 		return createrId;
 	}
 
-	public void setCreaterId(Integer createrId) {
+	public void setCreaterId(Long createrId) {
 		this.createrId = createrId;
 	}
 
@@ -50,11 +50,11 @@ public class LocationTypeBo {
 		this.gmtModify = gmtModify;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

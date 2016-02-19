@@ -115,52 +115,52 @@ public class UserLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -175,52 +175,52 @@ public class UserLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(Integer value) {
+        public Criteria andUserIdEqualTo(Long value) {
             addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(Integer value) {
+        public Criteria andUserIdNotEqualTo(Long value) {
             addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(Integer value) {
+        public Criteria andUserIdGreaterThan(Long value) {
             addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
             addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(Integer value) {
+        public Criteria andUserIdLessThan(Long value) {
             addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+        public Criteria andUserIdLessThanOrEqualTo(Long value) {
             addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIn(List<Integer> values) {
+        public Criteria andUserIdIn(List<Long> values) {
             addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotIn(List<Integer> values) {
+        public Criteria andUserIdNotIn(List<Long> values) {
             addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+        public Criteria andUserIdBetween(Long value1, Long value2) {
             addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andUserIdNotBetween(Long value1, Long value2) {
             addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
@@ -235,52 +235,52 @@ public class UserLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeEqualTo(Integer value) {
+        public Criteria andLocationTypeEqualTo(Long value) {
             addCriterion("location_type =", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeNotEqualTo(Integer value) {
+        public Criteria andLocationTypeNotEqualTo(Long value) {
             addCriterion("location_type <>", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeGreaterThan(Integer value) {
+        public Criteria andLocationTypeGreaterThan(Long value) {
             addCriterion("location_type >", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLocationTypeGreaterThanOrEqualTo(Long value) {
             addCriterion("location_type >=", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeLessThan(Integer value) {
+        public Criteria andLocationTypeLessThan(Long value) {
             addCriterion("location_type <", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andLocationTypeLessThanOrEqualTo(Long value) {
             addCriterion("location_type <=", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeIn(List<Integer> values) {
+        public Criteria andLocationTypeIn(List<Long> values) {
             addCriterion("location_type in", values, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeNotIn(List<Integer> values) {
+        public Criteria andLocationTypeNotIn(List<Long> values) {
             addCriterion("location_type not in", values, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeBetween(Integer value1, Integer value2) {
+        public Criteria andLocationTypeBetween(Long value1, Long value2) {
             addCriterion("location_type between", value1, value2, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andLocationTypeNotBetween(Long value1, Long value2) {
             addCriterion("location_type not between", value1, value2, "locationType");
             return (Criteria) this;
         }
@@ -565,52 +565,52 @@ public class UserLocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdEqualTo(Integer value) {
+        public Criteria andLocationIdEqualTo(Long value) {
             addCriterion("location_id =", value, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdNotEqualTo(Integer value) {
+        public Criteria andLocationIdNotEqualTo(Long value) {
             addCriterion("location_id <>", value, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdGreaterThan(Integer value) {
+        public Criteria andLocationIdGreaterThan(Long value) {
             addCriterion("location_id >", value, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLocationIdGreaterThanOrEqualTo(Long value) {
             addCriterion("location_id >=", value, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdLessThan(Integer value) {
+        public Criteria andLocationIdLessThan(Long value) {
             addCriterion("location_id <", value, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdLessThanOrEqualTo(Integer value) {
+        public Criteria andLocationIdLessThanOrEqualTo(Long value) {
             addCriterion("location_id <=", value, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdIn(List<Integer> values) {
+        public Criteria andLocationIdIn(List<Long> values) {
             addCriterion("location_id in", values, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdNotIn(List<Integer> values) {
+        public Criteria andLocationIdNotIn(List<Long> values) {
             addCriterion("location_id not in", values, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdBetween(Integer value1, Integer value2) {
+        public Criteria andLocationIdBetween(Long value1, Long value2) {
             addCriterion("location_id between", value1, value2, "locationId");
             return (Criteria) this;
         }
 
-        public Criteria andLocationIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andLocationIdNotBetween(Long value1, Long value2) {
             addCriterion("location_id not between", value1, value2, "locationId");
             return (Criteria) this;
         }

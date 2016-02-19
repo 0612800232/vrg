@@ -3,7 +3,7 @@ package com.lee.vrg.common.model;
 import java.util.Date;
 
 public class Location {
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -15,7 +15,7 @@ public class Location {
 
     private String y;
 
-    private Integer locationType;
+    private Long locationType;
 
     private Integer dayHot;
 
@@ -25,19 +25,19 @@ public class Location {
 
     private Integer yearHot;
 
-    private Integer createrId;
+    private Long createrId;
 
-    private Integer ownerId;
+    private Long ownerId;
 
     private Date gmtCreate;
 
     private Date gmtModify;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -81,11 +81,11 @@ public class Location {
         this.y = y == null ? null : y.trim();
     }
 
-    public Integer getLocationType() {
+    public Long getLocationType() {
         return locationType;
     }
 
-    public void setLocationType(Integer locationType) {
+    public void setLocationType(Long locationType) {
         this.locationType = locationType;
     }
 
@@ -121,19 +121,19 @@ public class Location {
         this.yearHot = yearHot;
     }
 
-    public Integer getCreaterId() {
+    public Long getCreaterId() {
         return createrId;
     }
 
-    public void setCreaterId(Integer createrId) {
+    public void setCreaterId(Long createrId) {
         this.createrId = createrId;
     }
 
-    public Integer getOwnerId() {
+    public Long getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(Integer ownerId) {
+    public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
     }
 

@@ -3,11 +3,11 @@ package com.lee.vrg.common.model;
 import java.util.Date;
 
 public class UserLocation {
-    private Integer id;
+    private Long id;
 
-    private Integer userId;
+    private Long userId;
 
-    private Integer locationType;
+    private Long locationType;
 
     private String locationName;
 
@@ -17,33 +17,33 @@ public class UserLocation {
 
     private Integer locationStatus;
 
-    private Integer locationId;
+    private Long locationId;
 
     private Date gmtCreate;
 
     private Date gmtModify;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Integer getLocationType() {
+    public Long getLocationType() {
         return locationType;
     }
 
-    public void setLocationType(Integer locationType) {
+    public void setLocationType(Long locationType) {
         this.locationType = locationType;
     }
 
@@ -79,11 +79,11 @@ public class UserLocation {
         this.locationStatus = locationStatus;
     }
 
-    public Integer getLocationId() {
+    public Long getLocationId() {
         return locationId;
     }
 
-    public void setLocationId(Integer locationId) {
+    public void setLocationId(Long locationId) {
         this.locationId = locationId;
     }
 

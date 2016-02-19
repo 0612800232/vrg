@@ -10,7 +10,7 @@ public interface UserLocationLogMapper {
 
     int deleteByExample(UserLocationLogExample example);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(UserLocationLog record);
 
@@ -18,7 +18,7 @@ public interface UserLocationLogMapper {
 
     List<UserLocationLog> selectByExample(UserLocationLogExample example);
 
-    UserLocationLog selectByPrimaryKey(Integer id);
+    UserLocationLog selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") UserLocationLog record, @Param("example") UserLocationLogExample example);
 

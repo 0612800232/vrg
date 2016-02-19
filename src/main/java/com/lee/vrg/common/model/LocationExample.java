@@ -115,52 +115,52 @@ public class LocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdEqualTo(Integer value) {
+        public Criteria andIdEqualTo(Long value) {
             addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotEqualTo(Integer value) {
+        public Criteria andIdNotEqualTo(Long value) {
             addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThan(Integer value) {
+        public Criteria andIdGreaterThan(Long value) {
             addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
             addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThan(Integer value) {
+        public Criteria andIdLessThan(Long value) {
             addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdLessThanOrEqualTo(Integer value) {
+        public Criteria andIdLessThanOrEqualTo(Long value) {
             addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdIn(List<Integer> values) {
+        public Criteria andIdIn(List<Long> values) {
             addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotIn(List<Integer> values) {
+        public Criteria andIdNotIn(List<Long> values) {
             addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdBetween(Integer value1, Integer value2) {
+        public Criteria andIdBetween(Long value1, Long value2) {
             addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
@@ -525,52 +525,52 @@ public class LocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeEqualTo(Integer value) {
+        public Criteria andLocationTypeEqualTo(Long value) {
             addCriterion("location_type =", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeNotEqualTo(Integer value) {
+        public Criteria andLocationTypeNotEqualTo(Long value) {
             addCriterion("location_type <>", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeGreaterThan(Integer value) {
+        public Criteria andLocationTypeGreaterThan(Long value) {
             addCriterion("location_type >", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLocationTypeGreaterThanOrEqualTo(Long value) {
             addCriterion("location_type >=", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeLessThan(Integer value) {
+        public Criteria andLocationTypeLessThan(Long value) {
             addCriterion("location_type <", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andLocationTypeLessThanOrEqualTo(Long value) {
             addCriterion("location_type <=", value, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeIn(List<Integer> values) {
+        public Criteria andLocationTypeIn(List<Long> values) {
             addCriterion("location_type in", values, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeNotIn(List<Integer> values) {
+        public Criteria andLocationTypeNotIn(List<Long> values) {
             addCriterion("location_type not in", values, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeBetween(Integer value1, Integer value2) {
+        public Criteria andLocationTypeBetween(Long value1, Long value2) {
             addCriterion("location_type between", value1, value2, "locationType");
             return (Criteria) this;
         }
 
-        public Criteria andLocationTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andLocationTypeNotBetween(Long value1, Long value2) {
             addCriterion("location_type not between", value1, value2, "locationType");
             return (Criteria) this;
         }
@@ -825,52 +825,52 @@ public class LocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdEqualTo(Integer value) {
+        public Criteria andCreaterIdEqualTo(Long value) {
             addCriterion("creater_id =", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdNotEqualTo(Integer value) {
+        public Criteria andCreaterIdNotEqualTo(Long value) {
             addCriterion("creater_id <>", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdGreaterThan(Integer value) {
+        public Criteria andCreaterIdGreaterThan(Long value) {
             addCriterion("creater_id >", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreaterIdGreaterThanOrEqualTo(Long value) {
             addCriterion("creater_id >=", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdLessThan(Integer value) {
+        public Criteria andCreaterIdLessThan(Long value) {
             addCriterion("creater_id <", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdLessThanOrEqualTo(Integer value) {
+        public Criteria andCreaterIdLessThanOrEqualTo(Long value) {
             addCriterion("creater_id <=", value, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdIn(List<Integer> values) {
+        public Criteria andCreaterIdIn(List<Long> values) {
             addCriterion("creater_id in", values, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdNotIn(List<Integer> values) {
+        public Criteria andCreaterIdNotIn(List<Long> values) {
             addCriterion("creater_id not in", values, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdBetween(Integer value1, Integer value2) {
+        public Criteria andCreaterIdBetween(Long value1, Long value2) {
             addCriterion("creater_id between", value1, value2, "createrId");
             return (Criteria) this;
         }
 
-        public Criteria andCreaterIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreaterIdNotBetween(Long value1, Long value2) {
             addCriterion("creater_id not between", value1, value2, "createrId");
             return (Criteria) this;
         }
@@ -885,52 +885,52 @@ public class LocationExample {
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdEqualTo(Integer value) {
+        public Criteria andOwnerIdEqualTo(Long value) {
             addCriterion("owner_id =", value, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdNotEqualTo(Integer value) {
+        public Criteria andOwnerIdNotEqualTo(Long value) {
             addCriterion("owner_id <>", value, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdGreaterThan(Integer value) {
+        public Criteria andOwnerIdGreaterThan(Long value) {
             addCriterion("owner_id >", value, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andOwnerIdGreaterThanOrEqualTo(Long value) {
             addCriterion("owner_id >=", value, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdLessThan(Integer value) {
+        public Criteria andOwnerIdLessThan(Long value) {
             addCriterion("owner_id <", value, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdLessThanOrEqualTo(Integer value) {
+        public Criteria andOwnerIdLessThanOrEqualTo(Long value) {
             addCriterion("owner_id <=", value, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdIn(List<Integer> values) {
+        public Criteria andOwnerIdIn(List<Long> values) {
             addCriterion("owner_id in", values, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdNotIn(List<Integer> values) {
+        public Criteria andOwnerIdNotIn(List<Long> values) {
             addCriterion("owner_id not in", values, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdBetween(Integer value1, Integer value2) {
+        public Criteria andOwnerIdBetween(Long value1, Long value2) {
             addCriterion("owner_id between", value1, value2, "ownerId");
             return (Criteria) this;
         }
 
-        public Criteria andOwnerIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andOwnerIdNotBetween(Long value1, Long value2) {
             addCriterion("owner_id not between", value1, value2, "ownerId");
             return (Criteria) this;
         }

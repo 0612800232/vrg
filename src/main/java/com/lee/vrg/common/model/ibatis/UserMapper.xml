@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lee.vrg.common.model.dao.UserMapper">
 	<resultMap id="BaseResultMap" type="com.lee.vrg.common.model.User">
-		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="id" property="id" jdbcType="BIGINT" />
 		<result column="user_name" property="userName" jdbcType="VARCHAR" />
 		<result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
 		<result column="email" property="email" jdbcType="VARCHAR" />
@@ -108,15 +108,15 @@
 		</if>
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
+		parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
 		from user
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
 	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		delete from user
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.lee.vrg.common.model.UserExample">
 		delete from user
@@ -125,24 +125,24 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.lee.vrg.common.model.User">
-		insert into user (id,
-		user_name, mobile_no,
+		insert into user (id, user_name, mobile_no,
 		email, logo, sex, birthday,
-		real_name, card_no,
-		hometown_name,
-		hometown_address_x, hometown_address_y, gmt_create,
+		real_name, card_no, hometown_name,
+		hometown_address_x,
+		hometown_address_y, gmt_create,
 		gmt_modify)
-		values (#{id,jdbcType=INTEGER},
-		#{userName,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
 		#{mobileNo,jdbcType=VARCHAR},
-		#{email,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR},
-		#{sex,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{logo,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
 		#{birthday,jdbcType=TIMESTAMP},
-		#{realName,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
-		#{hometownName,jdbcType=VARCHAR},
+		#{realName,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR}, #{hometownName,jdbcType=VARCHAR},
 		#{hometownAddressX,jdbcType=VARCHAR},
 		#{hometownAddressY,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
 		#{gmtModify,jdbcType=TIMESTAMP})
+		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
 	</insert>
 	<insert id="insertSelective" parameterType="com.lee.vrg.common.model.User">
 		insert into user
@@ -192,7 +192,7 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
-				#{id,jdbcType=INTEGER},
+				#{id,jdbcType=BIGINT},
 			</if>
 			<if test="userName != null">
 				#{userName,jdbcType=VARCHAR},
@@ -234,9 +234,7 @@
 				#{gmtModify,jdbcType=TIMESTAMP},
 			</if>
 		</trim>
-		<selectKey resultType="java.lang.Integer" keyProperty="id">
-			SELECT @@IDENTITY AS ID
-		</selectKey>
+		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
 	</insert>
 	<select id="countByExample" parameterType="com.lee.vrg.common.model.UserExample"
 		resultType="java.lang.Integer">
@@ -249,7 +247,7 @@
 		update user
 		<set>
 			<if test="record.id != null">
-				id = #{record.id,jdbcType=INTEGER},
+				id = #{record.id,jdbcType=BIGINT},
 			</if>
 			<if test="record.userName != null">
 				user_name = #{record.userName,jdbcType=VARCHAR},
@@ -299,7 +297,7 @@
 	</update>
 	<update id="updateByExample" parameterType="map">
 		update user
-		set id = #{record.id,jdbcType=INTEGER},
+		set id = #{record.id,jdbcType=BIGINT},
 		user_name =
 		#{record.userName,jdbcType=VARCHAR},
 		mobile_no =
@@ -373,7 +371,7 @@
 				gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
 			</if>
 		</set>
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.User">
 		update user
@@ -399,6 +397,6 @@
 		#{gmtCreate,jdbcType=TIMESTAMP},
 		gmt_modify =
 		#{gmtModify,jdbcType=TIMESTAMP}
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=BIGINT}
 	</update>
 </mapper>

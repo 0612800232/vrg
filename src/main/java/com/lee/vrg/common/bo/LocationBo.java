@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class LocationBo {
-	private Integer id;
+	private Long id;
 
 	@NotEmpty(message = "localtion.name.null")
 	@Length(min = 5, max = 20, message = "localtion.name.length.illegal")
@@ -36,19 +36,19 @@ public class LocationBo {
 
 	private Integer yearHot;
 
-	private Integer createrId;
+	private Long createrId;
 
-	private Integer ownerId;
+	private Long ownerId;
 
 	private Date gmtCreate;
 
 	private Date gmtModify;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -132,19 +132,19 @@ public class LocationBo {
 		this.yearHot = yearHot;
 	}
 
-	public Integer getCreaterId() {
+	public Long getCreaterId() {
 		return createrId;
 	}
 
-	public void setCreaterId(Integer createrId) {
+	public void setCreaterId(Long createrId) {
 		this.createrId = createrId;
 	}
 
-	public Integer getOwnerId() {
+	public Long getOwnerId() {
 		return ownerId;
 	}
 
-	public void setOwnerId(Integer ownerId) {
+	public void setOwnerId(Long ownerId) {
 		this.ownerId = ownerId;
 	}
 

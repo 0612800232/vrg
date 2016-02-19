@@ -22,7 +22,7 @@ public class GoodsServiceImpl implements GoodsService {
 	GoodsMapper goodsMapper;
 
 	@Override
-	public GoodsBo get(Integer id) throws BaseVrgException {
+	public GoodsBo get(Long id) throws BaseVrgException {
 		GoodsBo goodsBo = new GoodsBo();
 
 		Goods Goods = goodsMapper.selectByPrimaryKey(id);
@@ -93,7 +93,7 @@ public class GoodsServiceImpl implements GoodsService {
 	}
 
 	@Override
-	public boolean delete(Integer id) {
+	public boolean delete(Long id) {
 		return goodsMapper.deleteByPrimaryKey(id) > 0 ? true : false;
 	}
 

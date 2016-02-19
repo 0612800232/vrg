@@ -32,7 +32,7 @@ public interface UserService {
 	 * 用户信息查询
 	 * @param id
 	 */
-	public UserBo getUser(Integer id);
+	public UserBo getUser(Long id);
 
 	public UserBo update(UserBo user) throws BaseVrgException;
 

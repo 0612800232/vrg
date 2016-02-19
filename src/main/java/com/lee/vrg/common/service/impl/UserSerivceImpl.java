@@ -61,7 +61,7 @@ public class UserSerivceImpl implements UserService {
 	}
 
 	@Override
-	public UserBo getUser(Integer id) {
+	public UserBo getUser(Long id) {
 		UserBo userBo = new UserBo();
 		User use = userMapper.selectByPrimaryKey(id);
 		BeanUtils.copyProperties(use, userBo);
