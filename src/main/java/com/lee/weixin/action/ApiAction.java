@@ -10,15 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lee.vrg.Interceptor.LoginValid;
-
 @Controller
 @RequestMapping("/api/weixin")
 public class ApiAction {
 
 	@RequestMapping(value = "/checkServer.json", method = GET)
 	@ResponseBody
-	@LoginValid
 	public String get(String signature, String timestamp, String nonce, String echostr) throws Exception {
 
 		ArrayList<String> arl = new ArrayList<String>();
