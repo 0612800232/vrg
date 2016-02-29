@@ -6,17 +6,20 @@ import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import io.netty.handler.codec.http.HttpResponse;
 
 @Controller
 @RequestMapping("/api/weixin")
 public class ApiAction {
 
 	@RequestMapping(value = "/checkServer.json", method = GET)
-	@ResponseBody
-	public String get(String signature, String timestamp, String nonce, String echostr) throws Exception {
+	public void get(String signature, String timestamp, String nonce, String echostr,HttpServletResponse response) throws Exception {
 
 		ArrayList<String> arl = new ArrayList<String>();
 		arl.add("abc123");
@@ -41,7 +44,7 @@ public class ApiAction {
 			System.out.println("摘要不相同");
 		}
 		System.out.println(echostr);
-		return echostr;
+		response.getWriter().print(echostr);
 	}
 
 	public String byte2hex(byte[] b) // 二行制转字符串
