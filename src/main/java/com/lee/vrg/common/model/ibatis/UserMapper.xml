@@ -1,402 +1,353 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lee.vrg.common.model.dao.UserMapper">
-	<resultMap id="BaseResultMap" type="com.lee.vrg.common.model.User">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="user_name" property="userName" jdbcType="VARCHAR" />
-		<result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-		<result column="logo" property="logo" jdbcType="VARCHAR" />
-		<result column="sex" property="sex" jdbcType="VARCHAR" />
-		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
-		<result column="real_name" property="realName" jdbcType="VARCHAR" />
-		<result column="card_no" property="cardNo" jdbcType="VARCHAR" />
-		<result column="hometown_name" property="hometownName"
-			jdbcType="VARCHAR" />
-		<result column="hometown_address_x" property="hometownAddressX"
-			jdbcType="VARCHAR" />
-		<result column="hometown_address_y" property="hometownAddressY"
-			jdbcType="VARCHAR" />
-		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
-		<result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
-	</resultMap>
-	<sql id="Example_Where_Clause">
-		<where>
-			<foreach collection="oredCriteria" item="criteria" separator="or">
-				<if test="criteria.valid">
-					<trim prefix="(" suffix=")" prefixOverrides="and">
-						<foreach collection="criteria.criteria" item="criterion">
-							<choose>
-								<when test="criterion.noValue">
-									and ${criterion.condition}
-								</when>
-								<when test="criterion.singleValue">
-									and ${criterion.condition} #{criterion.value}
-								</when>
-								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
-									#{criterion.secondValue}
-								</when>
-								<when test="criterion.listValue">
-									and ${criterion.condition}
-									<foreach collection="criterion.value" item="listItem"
-										open="(" close=")" separator=",">
-										#{listItem}
-									</foreach>
-								</when>
-							</choose>
-						</foreach>
-					</trim>
-				</if>
-			</foreach>
-		</where>
-	</sql>
-	<sql id="Update_By_Example_Where_Clause">
-		<where>
-			<foreach collection="example.oredCriteria" item="criteria"
-				separator="or">
-				<if test="criteria.valid">
-					<trim prefix="(" suffix=")" prefixOverrides="and">
-						<foreach collection="criteria.criteria" item="criterion">
-							<choose>
-								<when test="criterion.noValue">
-									and ${criterion.condition}
-								</when>
-								<when test="criterion.singleValue">
-									and ${criterion.condition} #{criterion.value}
-								</when>
-								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
-									#{criterion.secondValue}
-								</when>
-								<when test="criterion.listValue">
-									and ${criterion.condition}
-									<foreach collection="criterion.value" item="listItem"
-										open="(" close=")" separator=",">
-										#{listItem}
-									</foreach>
-								</when>
-							</choose>
-						</foreach>
-					</trim>
-				</if>
-			</foreach>
-		</where>
-	</sql>
-	<sql id="Base_Column_List">
-		id, user_name, mobile_no, email, logo, sex, birthday,
-		real_name, card_no,
-		hometown_name,
-		hometown_address_x,
-		hometown_address_y, gmt_create, gmt_modify
-	</sql>
-	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="com.lee.vrg.common.model.UserExample">
-		select
-		<if test="distinct">
-			distinct
-		</if>
-		<include refid="Base_Column_List" />
-		from user
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-		<if test="orderByClause != null">
-			order by ${orderByClause}
-		</if>
-	</select>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from user
-		where id = #{id,jdbcType=BIGINT}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from user
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
-	<delete id="deleteByExample" parameterType="com.lee.vrg.common.model.UserExample">
-		delete from user
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</delete>
-	<insert id="insert" parameterType="com.lee.vrg.common.model.User">
-		insert into user (id, user_name, mobile_no,
-		email, logo, sex, birthday,
-		real_name, card_no, hometown_name,
-		hometown_address_x,
-		hometown_address_y, gmt_create,
-		gmt_modify)
-		values
-		(#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR},
-		#{mobileNo,jdbcType=VARCHAR},
-		#{email,jdbcType=VARCHAR},
-		#{logo,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
-		#{birthday,jdbcType=TIMESTAMP},
-		#{realName,jdbcType=VARCHAR},
-		#{cardNo,jdbcType=VARCHAR}, #{hometownName,jdbcType=VARCHAR},
-		#{hometownAddressX,jdbcType=VARCHAR},
-		#{hometownAddressY,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
-		#{gmtModify,jdbcType=TIMESTAMP})
-		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
-	</insert>
-	<insert id="insertSelective" parameterType="com.lee.vrg.common.model.User">
-		insert into user
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="userName != null">
-				user_name,
-			</if>
-			<if test="mobileNo != null">
-				mobile_no,
-			</if>
-			<if test="email != null">
-				email,
-			</if>
-			<if test="logo != null">
-				logo,
-			</if>
-			<if test="sex != null">
-				sex,
-			</if>
-			<if test="birthday != null">
-				birthday,
-			</if>
-			<if test="realName != null">
-				real_name,
-			</if>
-			<if test="cardNo != null">
-				card_no,
-			</if>
-			<if test="hometownName != null">
-				hometown_name,
-			</if>
-			<if test="hometownAddressX != null">
-				hometown_address_x,
-			</if>
-			<if test="hometownAddressY != null">
-				hometown_address_y,
-			</if>
-			<if test="gmtCreate != null">
-				gmt_create,
-			</if>
-			<if test="gmtModify != null">
-				gmt_modify,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=BIGINT},
-			</if>
-			<if test="userName != null">
-				#{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="mobileNo != null">
-				#{mobileNo,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				#{email,jdbcType=VARCHAR},
-			</if>
-			<if test="logo != null">
-				#{logo,jdbcType=VARCHAR},
-			</if>
-			<if test="sex != null">
-				#{sex,jdbcType=VARCHAR},
-			</if>
-			<if test="birthday != null">
-				#{birthday,jdbcType=TIMESTAMP},
-			</if>
-			<if test="realName != null">
-				#{realName,jdbcType=VARCHAR},
-			</if>
-			<if test="cardNo != null">
-				#{cardNo,jdbcType=VARCHAR},
-			</if>
-			<if test="hometownName != null">
-				#{hometownName,jdbcType=VARCHAR},
-			</if>
-			<if test="hometownAddressX != null">
-				#{hometownAddressX,jdbcType=VARCHAR},
-			</if>
-			<if test="hometownAddressY != null">
-				#{hometownAddressY,jdbcType=VARCHAR},
-			</if>
-			<if test="gmtCreate != null">
-				#{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="gmtModify != null">
-				#{gmtModify,jdbcType=TIMESTAMP},
-			</if>
-		</trim>
-		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
-	</insert>
-	<select id="countByExample" parameterType="com.lee.vrg.common.model.UserExample"
-		resultType="java.lang.Integer">
-		select count(*) from user
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</select>
-	<update id="updateByExampleSelective" parameterType="map">
-		update user
-		<set>
-			<if test="record.id != null">
-				id = #{record.id,jdbcType=BIGINT},
-			</if>
-			<if test="record.userName != null">
-				user_name = #{record.userName,jdbcType=VARCHAR},
-			</if>
-			<if test="record.mobileNo != null">
-				mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
-			</if>
-			<if test="record.email != null">
-				email = #{record.email,jdbcType=VARCHAR},
-			</if>
-			<if test="record.logo != null">
-				logo = #{record.logo,jdbcType=VARCHAR},
-			</if>
-			<if test="record.sex != null">
-				sex = #{record.sex,jdbcType=VARCHAR},
-			</if>
-			<if test="record.birthday != null">
-				birthday = #{record.birthday,jdbcType=TIMESTAMP},
-			</if>
-			<if test="record.realName != null">
-				real_name = #{record.realName,jdbcType=VARCHAR},
-			</if>
-			<if test="record.cardNo != null">
-				card_no = #{record.cardNo,jdbcType=VARCHAR},
-			</if>
-			<if test="record.hometownName != null">
-				hometown_name = #{record.hometownName,jdbcType=VARCHAR},
-			</if>
-			<if test="record.hometownAddressX != null">
-				hometown_address_x =
-				#{record.hometownAddressX,jdbcType=VARCHAR},
-			</if>
-			<if test="record.hometownAddressY != null">
-				hometown_address_y =
-				#{record.hometownAddressY,jdbcType=VARCHAR},
-			</if>
-			<if test="record.gmtCreate != null">
-				gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="record.gmtModify != null">
-				gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByExample" parameterType="map">
-		update user
-		set id = #{record.id,jdbcType=BIGINT},
-		user_name =
-		#{record.userName,jdbcType=VARCHAR},
-		mobile_no =
-		#{record.mobileNo,jdbcType=VARCHAR},
-		email =
-		#{record.email,jdbcType=VARCHAR},
-		logo =
-		#{record.logo,jdbcType=VARCHAR},
-		sex = #{record.sex,jdbcType=VARCHAR},
-		birthday = #{record.birthday,jdbcType=TIMESTAMP},
-		real_name =
-		#{record.realName,jdbcType=VARCHAR},
-		card_no =
-		#{record.cardNo,jdbcType=VARCHAR},
-		hometown_name =
-		#{record.hometownName,jdbcType=VARCHAR},
-		hometown_address_x =
-		#{record.hometownAddressX,jdbcType=VARCHAR},
-		hometown_address_y =
-		#{record.hometownAddressY,jdbcType=VARCHAR},
-		gmt_create =
-		#{record.gmtCreate,jdbcType=TIMESTAMP},
-		gmt_modify =
-		#{record.gmtModify,jdbcType=TIMESTAMP}
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByPrimaryKeySelective" parameterType="com.lee.vrg.common.model.User">
-		update user
-		<set>
-			<if test="userName != null">
-				user_name = #{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="mobileNo != null">
-				mobile_no = #{mobileNo,jdbcType=VARCHAR},
-			</if>
-			<if test="email != null">
-				email = #{email,jdbcType=VARCHAR},
-			</if>
-			<if test="logo != null">
-				logo = #{logo,jdbcType=VARCHAR},
-			</if>
-			<if test="sex != null">
-				sex = #{sex,jdbcType=VARCHAR},
-			</if>
-			<if test="birthday != null">
-				birthday = #{birthday,jdbcType=TIMESTAMP},
-			</if>
-			<if test="realName != null">
-				real_name = #{realName,jdbcType=VARCHAR},
-			</if>
-			<if test="cardNo != null">
-				card_no = #{cardNo,jdbcType=VARCHAR},
-			</if>
-			<if test="hometownName != null">
-				hometown_name = #{hometownName,jdbcType=VARCHAR},
-			</if>
-			<if test="hometownAddressX != null">
-				hometown_address_x =
-				#{hometownAddressX,jdbcType=VARCHAR},
-			</if>
-			<if test="hometownAddressY != null">
-				hometown_address_y =
-				#{hometownAddressY,jdbcType=VARCHAR},
-			</if>
-			<if test="gmtCreate != null">
-				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-			<if test="gmtModify != null">
-				gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.User">
-		update user
-		set
-		user_name = #{userName,jdbcType=VARCHAR},
-		mobile_no =
-		#{mobileNo,jdbcType=VARCHAR},
-		email = #{email,jdbcType=VARCHAR},
-		logo =
-		#{logo,jdbcType=VARCHAR},
-		sex = #{sex,jdbcType=VARCHAR},
-		birthday =
-		#{birthday,jdbcType=TIMESTAMP},
-		real_name =
-		#{realName,jdbcType=VARCHAR},
-		card_no = #{cardNo,jdbcType=VARCHAR},
-		hometown_name = #{hometownName,jdbcType=VARCHAR},
-		hometown_address_x =
-		#{hometownAddressX,jdbcType=VARCHAR},
-		hometown_address_y =
-		#{hometownAddressY,jdbcType=VARCHAR},
-		gmt_create =
-		#{gmtCreate,jdbcType=TIMESTAMP},
-		gmt_modify =
-		#{gmtModify,jdbcType=TIMESTAMP}
-		where id = #{id,jdbcType=BIGINT}
-	</update>
+<mapper namespace="com.lee.vrg.common.model.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.lee.vrg.common.model.User" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+    <result column="hometown_name" property="hometownName" jdbcType="VARCHAR" />
+    <result column="hometown_address_x" property="hometownAddressX" jdbcType="VARCHAR" />
+    <result column="hometown_address_y" property="hometownAddressY" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_name, mobile_no, email, logo, sex, birthday, real_name, card_no, hometown_name, 
+    hometown_address_x, hometown_address_y, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lee.vrg.common.model.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lee.vrg.common.model.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert useGeneratedKeys="true" keyProperty="id" id="insert" parameterType="com.lee.vrg.common.model.User" >
+    insert into user (id, user_name, mobile_no, 
+      email, logo, sex, birthday, 
+      real_name, card_no, hometown_name, 
+      hometown_address_x, hometown_address_y, gmt_create, 
+      gmt_modify)
+    values (#{id,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{realName,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{hometownName,jdbcType=VARCHAR}, 
+      #{hometownAddressX,jdbcType=VARCHAR}, #{hometownAddressY,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModify,jdbcType=TIMESTAMP})
+  </insert>
+  <insert useGeneratedKeys="true" keyProperty="id" id="insertSelective" parameterType="com.lee.vrg.common.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="cardNo != null" >
+        card_no,
+      </if>
+      <if test="hometownName != null" >
+        hometown_name,
+      </if>
+      <if test="hometownAddressX != null" >
+        hometown_address_x,
+      </if>
+      <if test="hometownAddressY != null" >
+        hometown_address_y,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownName != null" >
+        #{hometownName,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownAddressX != null" >
+        #{hometownAddressX,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownAddressY != null" >
+        #{hometownAddressY,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lee.vrg.common.model.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobileNo != null" >
+        mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null" >
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardNo != null" >
+        card_no = #{record.cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hometownName != null" >
+        hometown_name = #{record.hometownName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hometownAddressX != null" >
+        hometown_address_x = #{record.hometownAddressX,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hometownAddressY != null" >
+        hometown_address_y = #{record.hometownAddressY,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null" >
+        gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set id = #{record.id,jdbcType=BIGINT},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      card_no = #{record.cardNo,jdbcType=VARCHAR},
+      hometown_name = #{record.hometownName,jdbcType=VARCHAR},
+      hometown_address_x = #{record.hometownAddressX,jdbcType=VARCHAR},
+      hometown_address_y = #{record.hometownAddressY,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lee.vrg.common.model.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownName != null" >
+        hometown_name = #{hometownName,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownAddressX != null" >
+        hometown_address_x = #{hometownAddressX,jdbcType=VARCHAR},
+      </if>
+      <if test="hometownAddressY != null" >
+        hometown_address_y = #{hometownAddressY,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      mobile_no = #{mobileNo,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      real_name = #{realName,jdbcType=VARCHAR},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      hometown_name = #{hometownName,jdbcType=VARCHAR},
+      hometown_address_x = #{hometownAddressX,jdbcType=VARCHAR},
+      hometown_address_y = #{hometownAddressY,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

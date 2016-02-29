@@ -16,7 +16,7 @@ http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 	<context:property-placeholder location="classpath:config.properties" />
 
 	<!-- 添加注解驱动 -->
-	<context:component-scan base-package="com.lee.vrg.action" />
+	<context:component-scan base-package="com.lee.vrg.action,com.lee.weixin.action" />
 
 	<!-- 添加注解驱动 -->
 	<mvc:annotation-driven>

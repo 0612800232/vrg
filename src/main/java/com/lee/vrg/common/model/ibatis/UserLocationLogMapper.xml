@@ -1,256 +1,228 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.lee.vrg.common.model.dao.UserLocationLogMapper">
-	<resultMap id="BaseResultMap" type="com.lee.vrg.common.model.UserLocationLog">
-		<id column="id" property="id" jdbcType="BIGINT" />
-		<result column="user_id" property="userId" jdbcType="BIGINT" />
-		<result column="location_name" property="locationName"
-			jdbcType="VARCHAR" />
-		<result column="location_x" property="locationX" jdbcType="VARCHAR" />
-		<result column="location_y" property="locationY" jdbcType="VARCHAR" />
-		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
-	</resultMap>
-	<sql id="Example_Where_Clause">
-		<where>
-			<foreach collection="oredCriteria" item="criteria" separator="or">
-				<if test="criteria.valid">
-					<trim prefix="(" suffix=")" prefixOverrides="and">
-						<foreach collection="criteria.criteria" item="criterion">
-							<choose>
-								<when test="criterion.noValue">
-									and ${criterion.condition}
-								</when>
-								<when test="criterion.singleValue">
-									and ${criterion.condition} #{criterion.value}
-								</when>
-								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
-									#{criterion.secondValue}
-								</when>
-								<when test="criterion.listValue">
-									and ${criterion.condition}
-									<foreach collection="criterion.value" item="listItem"
-										open="(" close=")" separator=",">
-										#{listItem}
-									</foreach>
-								</when>
-							</choose>
-						</foreach>
-					</trim>
-				</if>
-			</foreach>
-		</where>
-	</sql>
-	<sql id="Update_By_Example_Where_Clause">
-		<where>
-			<foreach collection="example.oredCriteria" item="criteria"
-				separator="or">
-				<if test="criteria.valid">
-					<trim prefix="(" suffix=")" prefixOverrides="and">
-						<foreach collection="criteria.criteria" item="criterion">
-							<choose>
-								<when test="criterion.noValue">
-									and ${criterion.condition}
-								</when>
-								<when test="criterion.singleValue">
-									and ${criterion.condition} #{criterion.value}
-								</when>
-								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value}
-									and
-									#{criterion.secondValue}
-								</when>
-								<when test="criterion.listValue">
-									and ${criterion.condition}
-									<foreach collection="criterion.value" item="listItem"
-										open="(" close=")" separator=",">
-										#{listItem}
-									</foreach>
-								</when>
-							</choose>
-						</foreach>
-					</trim>
-				</if>
-			</foreach>
-		</where>
-	</sql>
-	<sql id="Base_Column_List">
-		id, user_id, location_name, location_x, location_y,
-		gmt_create
-	</sql>
-	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="com.lee.vrg.common.model.UserLocationLogExample">
-		select
-		<if test="distinct">
-			distinct
-		</if>
-		<include refid="Base_Column_List" />
-		from user_location_log
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-		<if test="orderByClause != null">
-			order by ${orderByClause}
-		</if>
-	</select>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from user_location_log
-		where id = #{id,jdbcType=BIGINT}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from
-		user_location_log
-		where id = #{id,jdbcType=BIGINT}
-	</delete>
-	<delete id="deleteByExample" parameterType="com.lee.vrg.common.model.UserLocationLogExample">
-		delete from user_location_log
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</delete>
-	<insert id="insert" parameterType="com.lee.vrg.common.model.UserLocationLog">
-		insert into user_location_log (id, user_id, location_name,
-		location_x,
-		location_y, gmt_create
-		)
-		values (#{id,jdbcType=BIGINT},
-		#{userId,jdbcType=BIGINT},
-		#{locationName,jdbcType=VARCHAR},
-		#{locationX,jdbcType=VARCHAR}, #{locationY,jdbcType=VARCHAR},
-		#{gmtCreate,jdbcType=TIMESTAMP}
-		)
-		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
-	</insert>
-	<insert id="insertSelective" parameterType="com.lee.vrg.common.model.UserLocationLog">
-		insert into user_location_log
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				id,
-			</if>
-			<if test="userId != null">
-				user_id,
-			</if>
-			<if test="locationName != null">
-				location_name,
-			</if>
-			<if test="locationX != null">
-				location_x,
-			</if>
-			<if test="locationY != null">
-				location_y,
-			</if>
-			<if test="gmtCreate != null">
-				gmt_create,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=BIGINT},
-			</if>
-			<if test="userId != null">
-				#{userId,jdbcType=BIGINT},
-			</if>
-			<if test="locationName != null">
-				#{locationName,jdbcType=VARCHAR},
-			</if>
-			<if test="locationX != null">
-				#{locationX,jdbcType=VARCHAR},
-			</if>
-			<if test="locationY != null">
-				#{locationY,jdbcType=VARCHAR},
-			</if>
-			<if test="gmtCreate != null">
-				#{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-		</trim>
-		<selectKey resultType="java.lang.Long" keyProperty="id"></selectKey>
-	</insert>
-	<select id="countByExample" parameterType="com.lee.vrg.common.model.UserLocationLogExample"
-		resultType="java.lang.Integer">
-		select count(*) from user_location_log
-		<if test="_parameter != null">
-			<include refid="Example_Where_Clause" />
-		</if>
-	</select>
-	<update id="updateByExampleSelective" parameterType="map">
-		update user_location_log
-		<set>
-			<if test="record.id != null">
-				id = #{record.id,jdbcType=BIGINT},
-			</if>
-			<if test="record.userId != null">
-				user_id = #{record.userId,jdbcType=BIGINT},
-			</if>
-			<if test="record.locationName != null">
-				location_name = #{record.locationName,jdbcType=VARCHAR},
-			</if>
-			<if test="record.locationX != null">
-				location_x = #{record.locationX,jdbcType=VARCHAR},
-			</if>
-			<if test="record.locationY != null">
-				location_y = #{record.locationY,jdbcType=VARCHAR},
-			</if>
-			<if test="record.gmtCreate != null">
-				gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByExample" parameterType="map">
-		update user_location_log
-		set id = #{record.id,jdbcType=BIGINT},
-		user_id
-		= #{record.userId,jdbcType=BIGINT},
-		location_name =
-		#{record.locationName,jdbcType=VARCHAR},
-		location_x =
-		#{record.locationX,jdbcType=VARCHAR},
-		location_y =
-		#{record.locationY,jdbcType=VARCHAR},
-		gmt_create =
-		#{record.gmtCreate,jdbcType=TIMESTAMP}
-		<if test="_parameter != null">
-			<include refid="Update_By_Example_Where_Clause" />
-		</if>
-	</update>
-	<update id="updateByPrimaryKeySelective" parameterType="com.lee.vrg.common.model.UserLocationLog">
-		update user_location_log
-		<set>
-			<if test="userId != null">
-				user_id = #{userId,jdbcType=BIGINT},
-			</if>
-			<if test="locationName != null">
-				location_name = #{locationName,jdbcType=VARCHAR},
-			</if>
-			<if test="locationX != null">
-				location_x = #{locationX,jdbcType=VARCHAR},
-			</if>
-			<if test="locationY != null">
-				location_y = #{locationY,jdbcType=VARCHAR},
-			</if>
-			<if test="gmtCreate != null">
-				gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-			</if>
-		</set>
-		where id = #{id,jdbcType=BIGINT}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.UserLocationLog">
-		update
-		user_location_log
-		set user_id = #{userId,jdbcType=BIGINT},
-		location_name = #{locationName,jdbcType=VARCHAR},
-		location_x =
-		#{locationX,jdbcType=VARCHAR},
-		location_y =
-		#{locationY,jdbcType=VARCHAR},
-		gmt_create =
-		#{gmtCreate,jdbcType=TIMESTAMP}
-		where id = #{id,jdbcType=BIGINT}
-	</update>
+<mapper namespace="com.lee.vrg.common.model.dao.UserLocationLogMapper" >
+  <resultMap id="BaseResultMap" type="com.lee.vrg.common.model.UserLocationLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="location_name" property="locationName" jdbcType="VARCHAR" />
+    <result column="location_x" property="locationX" jdbcType="VARCHAR" />
+    <result column="location_y" property="locationY" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, location_name, location_x, location_y, gmt_create
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lee.vrg.common.model.UserLocationLogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_location_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_location_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from user_location_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lee.vrg.common.model.UserLocationLogExample" >
+    delete from user_location_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert useGeneratedKeys="true" keyProperty="id" id="insert" parameterType="com.lee.vrg.common.model.UserLocationLog" >
+    insert into user_location_log (id, user_id, location_name, 
+      location_x, location_y, gmt_create
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{locationName,jdbcType=VARCHAR}, 
+      #{locationX,jdbcType=VARCHAR}, #{locationY,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert useGeneratedKeys="true" keyProperty="id" id="insertSelective" parameterType="com.lee.vrg.common.model.UserLocationLog" >
+    insert into user_location_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="locationName != null" >
+        location_name,
+      </if>
+      <if test="locationX != null" >
+        location_x,
+      </if>
+      <if test="locationY != null" >
+        location_y,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="locationName != null" >
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null" >
+        #{locationX,jdbcType=VARCHAR},
+      </if>
+      <if test="locationY != null" >
+        #{locationY,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lee.vrg.common.model.UserLocationLogExample" resultType="java.lang.Integer" >
+    select count(*) from user_location_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user_location_log
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.locationName != null" >
+        location_name = #{record.locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationX != null" >
+        location_x = #{record.locationX,jdbcType=VARCHAR},
+      </if>
+      <if test="record.locationY != null" >
+        location_y = #{record.locationY,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null" >
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user_location_log
+    set id = #{record.id,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      location_name = #{record.locationName,jdbcType=VARCHAR},
+      location_x = #{record.locationX,jdbcType=VARCHAR},
+      location_y = #{record.locationY,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lee.vrg.common.model.UserLocationLog" >
+    update user_location_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="locationName != null" >
+        location_name = #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="locationX != null" >
+        location_x = #{locationX,jdbcType=VARCHAR},
+      </if>
+      <if test="locationY != null" >
+        location_y = #{locationY,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lee.vrg.common.model.UserLocationLog" >
+    update user_location_log
+    set user_id = #{userId,jdbcType=BIGINT},
+      location_name = #{locationName,jdbcType=VARCHAR},
+      location_x = #{locationX,jdbcType=VARCHAR},
+      location_y = #{locationY,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

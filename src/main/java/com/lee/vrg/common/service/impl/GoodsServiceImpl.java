@@ -25,9 +25,9 @@ public class GoodsServiceImpl implements GoodsService {
 	public GoodsBo get(Long id) throws BaseVrgException {
 		GoodsBo goodsBo = new GoodsBo();
 
-		Goods Goods = goodsMapper.selectByPrimaryKey(id);
-		if (Goods != null) {
-			BeanUtils.copyProperties(goodsMapper.selectByPrimaryKey(id), goodsBo);
+		Goods goods = goodsMapper.selectByPrimaryKey(id);
+		if (goods != null) {
+			BeanUtils.copyProperties(goods, goodsBo);
 		} else {
 			throw new BaseVrgException("-2", "goods.no.exist");
 		}
