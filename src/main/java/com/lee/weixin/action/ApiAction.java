@@ -54,9 +54,7 @@ public class ApiAction {
 				hs = hs + "0" + stmp;
 			else
 				hs = hs + stmp;
-			if (n < b.length - 1)
-				hs = hs + ":";
 		}
-		return hs.toUpperCase();
+		return hs.toLowerCase();
 	}
 }
