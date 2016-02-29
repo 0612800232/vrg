@@ -8,7 +8,7 @@
         </layout> 
     </appender>
     
-    <appender name="info" class="com.caishuo.common.log.LogAppender">  
+    <appender name="info" class="com.lee.vrg.common.log.LogAppender">  
       <param name="File" value="@log.path@/gas-info.log" />
       <param name="File" value="@log.path@/gas-info.log" />
       <param name="Append" value="true" />   
@@ -18,7 +18,7 @@
         </layout> 
     </appender>
     
-    <appender name="warn" class="com.caishuo.common.log.LogAppender">  
+    <appender name="warn" class="com.lee.vrg.common.log.LogAppender">  
       <param name="File" value="@log.path@/gas-warn.log " />
       <param name="Append" value="true" />
       <param name="Threshold" value="WARN" />    
@@ -28,7 +28,7 @@
     </appender>
     
     
-    <appender name="debug" class="com.caishuo.common.log.LogAppender">  
+    <appender name="debug" class="com.lee.vrg.common.log.LogAppender">  
        <param name="File" value="@log.path@/gas-debug.log " />
        <param name="Append" value="true" />
        <param name="Threshold" value="DEBUG" />
@@ -37,7 +37,7 @@
         </layout> 
     </appender>
     
-    <appender name="error" class="com.caishuo.common.log.LogAppender">  
+    <appender name="error" class="com.lee.vrg.common.log.LogAppender">  
       <param name="File" value="@log.path@/gas-error.log " />
       <param name="Append" value="true" />
       <param name="Threshold" value="ERROR" />
