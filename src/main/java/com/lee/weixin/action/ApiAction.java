@@ -40,7 +40,7 @@ public class ApiAction {
 			System.err.println("收到的消息是：" + signature );
 			System.out.println("摘要不相同");
 		}
-
+		System.out.println(echostr);
 		return echostr;
 	}
 
