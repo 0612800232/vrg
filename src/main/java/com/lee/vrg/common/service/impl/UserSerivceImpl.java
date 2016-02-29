@@ -6,7 +6,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.caishuo.common.util.StringUtil;
 import com.lee.vrg.common.bo.UserBo;
 import com.lee.vrg.common.exception.BaseVrgException;
 import com.lee.vrg.common.model.User;
@@ -14,6 +13,7 @@ import com.lee.vrg.common.model.UserExample;
 import com.lee.vrg.common.model.UserExample.Criteria;
 import com.lee.vrg.common.model.dao.UserMapper;
 import com.lee.vrg.common.service.UserService;
+import com.lee.vrg.common.util.StringUtil;
 
 @Service
 public class UserSerivceImpl implements UserService {

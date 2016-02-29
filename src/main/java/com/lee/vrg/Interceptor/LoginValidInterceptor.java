@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.caishuo.common.util.StringUtil;
 import com.lee.vrg.common.exception.BaseVrgException;
+import com.lee.vrg.common.util.StringUtil;
 
 /**
  * 登录判断拦截器，简单判断userAgent是否存在，userAgent数据是否有效需要UserAgentArgumentResolver解析判断

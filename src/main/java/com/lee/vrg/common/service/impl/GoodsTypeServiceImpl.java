@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.caishuo.common.util.StringUtil;
 import com.lee.vrg.common.bo.GoodsTypeBo;
 import com.lee.vrg.common.exception.BaseVrgException;
 import com.lee.vrg.common.model.GoodsType;
@@ -15,6 +14,7 @@ import com.lee.vrg.common.model.GoodsTypeExample;
 import com.lee.vrg.common.model.GoodsTypeExample.Criteria;
 import com.lee.vrg.common.model.dao.GoodsTypeMapper;
 import com.lee.vrg.common.service.GoodsTypeService;
+import com.lee.vrg.common.util.StringUtil;
 
 @Service
 public class GoodsTypeServiceImpl implements GoodsTypeService {

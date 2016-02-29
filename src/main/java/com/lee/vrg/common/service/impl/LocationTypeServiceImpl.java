@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.caishuo.common.util.StringUtil;
 import com.lee.vrg.common.bo.LocationTypeBo;
 import com.lee.vrg.common.exception.BaseVrgException;
 import com.lee.vrg.common.model.LocationType;
@@ -15,6 +14,7 @@ import com.lee.vrg.common.model.LocationTypeExample;
 import com.lee.vrg.common.model.LocationTypeExample.Criteria;
 import com.lee.vrg.common.model.dao.LocationTypeMapper;
 import com.lee.vrg.common.service.LocationTypeService;
+import com.lee.vrg.common.util.StringUtil;
 
 @Service
 public class LocationTypeServiceImpl implements LocationTypeService {

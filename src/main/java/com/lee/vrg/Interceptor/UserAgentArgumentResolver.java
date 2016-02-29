@@ -9,8 +9,8 @@ import org.springframework.web.bind.support.WebArgumentResolver;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import com.alibaba.fastjson.JSON;
-import com.caishuo.common.util.StringUtil;
 import com.lee.vrg.common.exception.BaseVrgException;
+import com.lee.vrg.common.util.StringUtil;
 import com.lee.vrg.util.DESUtil;
 
 /**
