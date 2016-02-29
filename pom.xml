@@ -8,6 +8,7 @@
 	<name>51go2 Maven Webapp</name>
 	<url>https://www.51go2.com</url>
 
+	<!-- 
 	<repositories>
 		<repository>
 			<id>caishuo</id>
@@ -24,7 +25,6 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<!--配置远程发布到私服，mvndeploy -->
 	<distributionManagement>
 		<repository>
 			<id>caishuo</id>
@@ -37,7 +37,7 @@
 			<url>http://192.168.1.37:9081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
-
+ -->
 
 
 
