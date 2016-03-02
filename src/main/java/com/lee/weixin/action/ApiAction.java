@@ -86,7 +86,7 @@ public class ApiAction {
 		String content = "您发送的位置是:" + wxmessage.getLabel() + ";纬度是:" + wxmessage.getLocation_X() + ";经度是:"
 				+ wxmessage.getLocation_Y() + ";缩放比例为:" + wxmessage.getScale();
 		Content.setText(addText(content));
-		return xml.asXML();
+		return xml.asXML().substring(39);
 	}
 
 	String addText(String text) {
