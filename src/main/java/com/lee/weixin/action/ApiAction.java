@@ -92,7 +92,7 @@ public class ApiAction {
 	}
 
 	String addText(String text) {
-		return "![CDATA[" + text + "]]";
+		return text;
 	}
 
 	Wxmessage getWxMessage(String requestBody) throws Exception {
