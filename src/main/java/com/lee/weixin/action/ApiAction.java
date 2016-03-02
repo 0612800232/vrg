@@ -62,14 +62,16 @@ public class ApiAction {
 	public String post(@RequestBody String requestBody, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		System.out.println(requestBody);
-		return sendMessage(getWxMessage(requestBody), response);
+		String responeBody = sendMessage(getWxMessage(requestBody), response);
+		log.info(responeBody);
+		return responeBody;
 	}
 
 	String sendMessage(Wxmessage wxmessage, HttpServletResponse response) throws Exception {
 
 		Document xml = DocumentHelper.createDocument();
 		Element root = xml.addElement("xml");
-		
+
 		Element ToUserName = root.addElement("ToUserName");
 		ToUserName.setText(addText(wxmessage.getFromUserName()));
 
@@ -83,8 +85,8 @@ public class ApiAction {
 		MsgType.setText(addText("text"));
 
 		Element Content = root.addElement("Content");
-		String content = "您发送的位置是:" + wxmessage.getLabel() + ";纬度是:" + wxmessage.getLocation_X() + ";经度是:"
-				+ wxmessage.getLocation_Y() + ";缩放比例为:" + wxmessage.getScale();
+		String content = "address:" + wxmessage.getLabel() + ";x:" + wxmessage.getLocation_X() + ";y:"
+				+ wxmessage.getLocation_Y() + ";scale:" + wxmessage.getScale();
 		Content.setText(addText(content));
 		return xml.asXML().substring(39);
 	}
