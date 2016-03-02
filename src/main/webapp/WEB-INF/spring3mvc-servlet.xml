@@ -18,9 +18,14 @@ http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 	<!-- 添加注解驱动 -->
 	<context:component-scan base-package="com.lee.vrg.action,com.lee.weixin.action" />
 
+
 	<!-- 添加注解驱动 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
+			<!--先进行string转换 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
 			<bean
 				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
 				<property name="supportedMediaTypes" value="application/json" />

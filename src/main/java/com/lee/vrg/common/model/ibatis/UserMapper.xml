@@ -109,7 +109,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert useGeneratedKeys="true" keyProperty="id" id="insert" parameterType="com.lee.vrg.common.model.User" >
+  <insert keyProperty="id" useGeneratedKeys="true"  id="insert" parameterType="com.lee.vrg.common.model.User" >
     insert into user (id, user_name, mobile_no, 
       email, logo, sex, birthday, 
       real_name, card_no, hometown_name, 
@@ -121,7 +121,7 @@
       #{hometownAddressX,jdbcType=VARCHAR}, #{hometownAddressY,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
       #{gmtModify,jdbcType=TIMESTAMP})
   </insert>
-  <insert useGeneratedKeys="true" keyProperty="id" id="insertSelective" parameterType="com.lee.vrg.common.model.User" >
+  <insert keyProperty="id" useGeneratedKeys="true"  id="insertSelective" parameterType="com.lee.vrg.common.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

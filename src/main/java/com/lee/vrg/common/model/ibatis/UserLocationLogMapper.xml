@@ -100,7 +100,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert useGeneratedKeys="true" keyProperty="id" id="insert" parameterType="com.lee.vrg.common.model.UserLocationLog" >
+  <insert keyProperty="id" useGeneratedKeys="true"  id="insert" parameterType="com.lee.vrg.common.model.UserLocationLog" >
     insert into user_location_log (id, user_id, location_name, 
       location_x, location_y, gmt_create
       )
@@ -108,7 +108,7 @@
       #{locationX,jdbcType=VARCHAR}, #{locationY,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert useGeneratedKeys="true" keyProperty="id" id="insertSelective" parameterType="com.lee.vrg.common.model.UserLocationLog" >
+  <insert keyProperty="id" useGeneratedKeys="true"  id="insertSelective" parameterType="com.lee.vrg.common.model.UserLocationLog" >
     insert into user_location_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

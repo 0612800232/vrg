@@ -18,6 +18,7 @@ import org.dom4j.Element;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lee.weixin.bo.Wxmessage;
 
@@ -57,13 +58,14 @@ public class ApiAction {
 	}
 
 	@RequestMapping(value = "/weixin", method = POST)
-	public void post(@RequestBody String requestBody, HttpServletRequest request, HttpServletResponse response)
+	@ResponseBody
+	public String post(@RequestBody String requestBody, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		System.out.println(requestBody);
-		sendMessage(getWxMessage(requestBody), response);
+		return sendMessage(getWxMessage(requestBody), response);
 	}
 
-	void sendMessage(Wxmessage wxmessage, HttpServletResponse response) throws Exception {
+	String sendMessage(Wxmessage wxmessage, HttpServletResponse response) throws Exception {
 
 		Document xml = DocumentHelper.createDocument();
 		Element root = xml.addElement("xml");
@@ -84,8 +86,7 @@ public class ApiAction {
 		String content = "您发送的位置是:" + wxmessage.getLabel() + ";纬度是:" + wxmessage.getLocation_X() + ";经度是:"
 				+ wxmessage.getLocation_Y() + ";缩放比例为:" + wxmessage.getScale();
 		Content.setText(addText(content));
-		response.getWriter().print(xml.asXML());
-
+		return xml.asXML();
 	}
 
 	String addText(String text) {
